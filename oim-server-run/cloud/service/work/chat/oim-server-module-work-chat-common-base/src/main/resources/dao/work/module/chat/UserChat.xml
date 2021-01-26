@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="chat.UserChat">
+
+		<query name="queryUserChatContentList" type="sql">
+			<content>
+                <![CDATA[
+					select 
+					 	cc.*
+                    from 
+                    	im_user_chat_content cc 
+                    
+                    where 1=1
+    
+                    <#if ownKey?? >
+                    	and cc.ownKey = :ownKey
+                    </#if>
+
+                    <#if outId??  && ''!=outId >
+                    	and cc.id != :outId
+                    </#if>
+                    
+                    <#if outMessageKey?? && ''!=outMessageKey >
+                    	and cc.messageKey != :outMessageKey
+                    </#if>
+                    
+                    <#if timestamp?? && 0!=timestamp >
+						and cc.timestamp ${compare} :timestamp
+                    </#if>
+			
+					<#if startTimestamp?? && 0!=startTimestamp >
+                    	and cc.timestamp >= :startTimestamp
+                    </#if>
+                    
+                    <#if endTimestamp?? && 0!=endTimestamp >
+                    	and cc.timestamp <= :endTimestamp
+                    </#if>
+                    
+                    <#if chatReceiveUserId?? && ''!=chatReceiveUserId >
+                    	and cc.receiveUserId = :chatReceiveUserId
+                    </#if>
+                    
+                    <#if chatSendUserId?? && ''!=chatSendUserId >
+                    	and cc.sendUserId = :chatSendUserId
+                    </#if>
+
+                    order by cc.timestamp desc
+                ]]>
+			</content>
+		</query>
+
+	</space>
+</body>

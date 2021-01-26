@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.oimchat.server</groupId>
+	<artifactId>oim-server-module-net-video-service-build</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>${project.artifactId}</name>
+	<url></url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+	</properties>
+
+	<modules>
+		<module>../../../common/basic/oim-basic-server-business</module>
+		<module>../../../common/basic/oim-basic-server-extend</module>
+
+		<!-- -->
+		<module>../../../common/data/oim-common-message</module>
+
+		<!-- -->
+		<module>../../../common/extract/oim-define-server-business</module>
+		<module>../../../common/extract/oim-common-server-feign</module>
+		<module>../../../common/extract/oim-common-server-push</module>
+		<module>../../../common/extract/oim-common-server-run</module>
+
+		<module>../../../common/module/oim-module-server-net</module>
+
+		<module>../../../common/run/oim-run-server-auth</module>
+
+
+		<module>oim-server-net-work-main</module>
+		<module>oim-server-net-work-run</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+
+		</plugins>
+	</build>
+
+</project>

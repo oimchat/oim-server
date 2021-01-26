@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="chat.UserChatItem">
+		<query name="getListByContentIds" type="sql">
+			<content>
+                <![CDATA[
+	
+					select 
+						item.*
+                    from im_user_chat_item item
+                    
+                    where 1=1
+                    
+                    <#if contentIds?? && (contentIds?size > 0) >
+                    	and item.contentId in( :contentIds )
+                    </#if>
+                    
+                    order by item.section, item.sort
+                ]]>
+			</content>
+		</query>
+	</space>
+</body>

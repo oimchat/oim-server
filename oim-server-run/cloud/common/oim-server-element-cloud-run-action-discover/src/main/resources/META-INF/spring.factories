@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.oimchat.server.cloud.action.discover.common.config.DiscoverActionStarterAutoConfig

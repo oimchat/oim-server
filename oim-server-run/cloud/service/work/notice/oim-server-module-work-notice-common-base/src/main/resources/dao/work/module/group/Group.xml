@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="group">
+		<query name="queryGroupList" type="sql">
+
+			<content>
+                <![CDATA[
+                    select  g.*
+                    from im_group g
+                    where 1=1
+                    
+                    <#if queryText?? && ''!=queryText>
+		            	and (		
+		            		g.name like :queryText  or 
+		            		g.number like :queryText 
+                     	 	)
+		            </#if>
+		            <#if number?? && ''!=number>
+                   		and g.number = :number 
+               		</#if>
+               		
+		            <#if name?? && ''!=name>
+		            	and  g.name like :name 
+		            </#if>
+		            
+		            <#if classification?? && ''!=classification>
+						and g.classification = :classification
+					</#if>
+					
+					<#if whereSQL?? && whereSQL != ''>${whereSQL}</#if>
+			   		<#if orderBy?? && orderBy != ''>${orderBy}</#if>
+                ]]>
+				<!-- order by id -->
+			</content>
+		</query>
+
+		<query name="updateSelective" type="sql">
+			<content>
+                <![CDATA[
+                    update im_group set
+                    
+                    <#assign sql=""><#-- 定义一个变量"sql" -->
+           
+           			<#if name?? && ''!=name>
+		                <#assign sql="${sql},name=:name">
+		            </#if>
+		            
+		            <#if head?? && ''!=head>
+		                <#assign sql="${sql},head=:head">
+		            </#if>
+		            
+		            <#if avatar?? && ''!=avatar>
+		                <#assign sql="${sql},avatar=:avatar">
+		            </#if>
+		         
+		            <#if remark?? && ''!=remark>
+		                <#assign sql="${sql},remark=:remark">
+		            </#if>
+		  
+		            <#if classification?? && ''!=classification>
+		                <#assign sql="${sql},classification=:classification">
+		            </#if>
+		            
+		            <#if introduce?? && ''!=introduce>
+		                <#assign sql="${sql},introduce=:introduce">
+		            </#if>
+		            
+		            <#if location?? && ''!=location>
+		                <#assign sql="${sql},location=:location">
+		            </#if>
+		            
+		            <#if updatedTimestamp?? && 0!=updatedTimestamp>
+		                <#assign sql="${sql},updatedTimestamp=:updatedTimestamp">
+		            </#if>
+		            
+		            <#if updatedDateTime??>
+		                <#assign sql="${sql},updatedDateTime=:updatedDateTime">
+		            </#if>
+
+                    <#if sql?? && ''!=sql>
+                    	${sql?substring(1)}<#-- 截取掉最前面的"," -->
+                    </#if>
+                    where id = :id
+                ]]>
+			</content>
+		</query>
+	</space>
+</body>

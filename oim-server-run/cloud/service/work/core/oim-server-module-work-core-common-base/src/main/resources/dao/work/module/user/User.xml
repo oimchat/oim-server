@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="user.info">
+
+		<query name="getById" type="sql">
+			<content>
+                <![CDATA[
+                    select  *
+                    from im_user u
+                    where id=:id
+                ]]>
+			</content>
+		</query>
+
+		<query name="getByAccount" type="sql">
+			<content>
+                <![CDATA[
+                    select  *
+                    from im_user u
+                    where account=:account
+                ]]>
+			</content>
+		</query>
+
+		<query name="getIdByAccount" type="sql">
+			<content>
+                <![CDATA[
+                    select id from im_user where account=:account
+                ]]>
+			</content>
+		</query>
+
+		<query name="getUserAllCount" type="sql">
+			<content>
+                <![CDATA[
+                    select count(*) from im_user 
+                ]]>
+			</content>
+		</query>
+
+		<!-- 条件查询用户列表 -->
+		<query name="queryUserList" type="sql">
+			<content>
+                <![CDATA[
+                    select  u.*
+                    from im_user u
+                    where 1=1
+                    
+                    <#if queryText?? && ''!=queryText>
+		                and 
+		                ( 
+		                	u.account like :queryText or 
+		                	u.nickname like :queryText or 
+		            		u.number like :queryText 
+		            	)
+		            </#if>
+		            
+
+		            <#if age?? && ''!=age>
+		            	and u.age = :age
+		            </#if>
+		            
+		            <#if constellationCode?? && ''!=constellationCode>
+		            	and u.constellationCode = :constellationCode
+		            </#if>
+		            
+		            <#if blood?? && ''!=blood>
+		            	and u.blood = :blood
+		            </#if>
+
+		            <#if gender?? && ''!=gender>
+		            	and u.gender = :gender
+		            </#if>
+
+		            <#if type?? && ''!=type>
+		            	and u.type = :type
+		            </#if>
+		            
+		            <#if startBirthDate?? && ''!=startBirthDate>
+		            	and u.birthDate >= :startBirthDate
+		            </#if>
+		            
+		            <#if endBirthDate?? && ''!=endBirthDate>
+		            	and u.birthDate <= :endBirthDate
+		            </#if>
+	
+				<#if whereSQL?? && whereSQL != ''>${whereSQL}</#if>
+			   	<#if orderBy?? && orderBy != ''>${orderBy}</#if>
+                ]]>
+				<!-- order by id -->
+			</content>
+		</query>
+
+	</space>
+</body>

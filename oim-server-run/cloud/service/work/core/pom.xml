@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.oimchat.server</groupId>
+	<artifactId>oim-server-module-work-core-service-build</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>${project.artifactId}</name>
+	<url></url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+	</properties>
+
+	<modules>
+		<module>../../../common/oim-server-element-basic-common-data</module>
+		<module>../../../common/oim-server-element-basic-common-util</module>
+		<module>../../../common/oim-server-element-basic-common-work</module>
+		<module>../../../common/oim-server-element-basic-definition-auth</module>
+		<module>../../../common/oim-server-element-basic-definition-net</module>
+		<module>../../../common/oim-server-element-basic-run-common-db-base</module>
+		<module>../../../common/oim-server-element-basic-run-common-db-sharding</module>
+		<module>../../../common/oim-server-element-basic-run-dependency-webflux-boot</module>
+		<module>../../../common/oim-server-element-cloud-impl-auth</module>
+		<module>../../../common/oim-server-element-cloud-impl-net</module>
+		<module>../../../common/oim-server-element-cloud-net-basic-message</module>
+		<module>../../../common/oim-server-element-cloud-net-extend-session</module>
+		<module>../../../common/oim-server-element-cloud-net-impl-rabbit-config</module>
+		<module>../../../common/oim-server-element-cloud-net-impl-rabbit-producer</module>
+		<module>../../../common/oim-server-element-cloud-run-action-register</module>
+		<module>../../../common/oim-server-element-cloud-run-common-basic</module>
+		<module>../../../common/oim-server-element-cloud-run-common-work</module>
+		<module>../../../common/oim-server-element-cloud-run-dependency-webflux-eureka</module>
+		
+		<module>oim-server-module-work-core-common-base</module>
+		<module>oim-server-module-work-core-function-business</module>
+		<module>oim-server-module-work-core-function-manage</module>
+		<module>oim-server-module-work-core-service-running</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+
+		</plugins>
+	</build>
+
+</project>

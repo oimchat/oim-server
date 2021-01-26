@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.oimchat.server</groupId>
+		<artifactId>oim-server-base-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../cloud/common/oim-server-base-parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>oim-server-single-running</artifactId>
+	<name>${project.artifactId}</name>
+	<url></url>
+	<description></description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-single-main</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onlyxiahui.aware</groupId>
+			<artifactId>aware-run-doc-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.onlyxiahui.wofa</groupId>
+			<artifactId>wofa-server-run-netty-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.onlyxiahui.wofa</groupId>
+			<artifactId>wofa-server-net-push-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onlyxiahui.aware</groupId>
+			<artifactId>aware-basic-extend</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-sharding</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-dependency-webflux-boot</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>config</targetPath>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+					<exclude>**/*.yml</exclude>
+				</excludes>
+			</resource>
+			<!-- 过滤脚本文件到bin目录 -->
+			<resource>
+				<directory>src/main/scripts</directory>
+				<filtering>true</filtering>
+				<targetPath>bin</targetPath>
+				<includes>
+					<include>*.bat</include>
+					<include>*.sh</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- jar包内剔除所有配置文件 -->
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 -->
+						<addMavenDescriptor>false</addMavenDescriptor>
+						<!-- Manifest specific configuration -->
+						<manifest>
+							<!-- 是否要把第三方jar放到manifest的classpath中 -->
+							<addClasspath>true</addClasspath>
+							<!-- 生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/ -->
+							<!-- <classpathPrefix>lib</classpathPrefix> -->
+							<!-- 应用的main class -->
+							<mainClass>ink.oim.SingleApplication</mainClass>
+							<classpathLayoutType>custom</classpathLayoutType>
+							<customClasspathLayout>
+								lib/$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}
+								module/$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}
+							</customClasspathLayout>
+						</manifest>
+					</archive>
+					<!--不打入jar包的文件类型或者路径 -->
+					<excludes>
+						<exclude>**/*.properties</exclude>
+						<exclude>**/*.yml</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<configuration>
+					<includeClassifiers>sources</includeClassifiers>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>    <!-- hot deploy -->
+					<includes>   <!-- exclude third part jar files -->
+						<include>
+							<groupId>nothing</groupId>
+							<artifactId>nothing</artifactId>
+						</include>
+					</includes>
+					<!-- <classifier>exec</classifier> -->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 忽略 junit测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<!-- <version>3.1.0</version> -->
+				<configuration>
+					<!-- 是否含id -->
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptors>
+						<descriptor>src/main/assembly/package.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<url>http://106.12.217.185:9005/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>

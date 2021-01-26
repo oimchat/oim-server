@@ -1,0 +1,262 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.oimchat.server</groupId>
+    <artifactId>oim-server-base-dependencies</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <url></url>
+    <description></description>
+
+    <properties>
+        <!-- 属性定义 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <oim.version>1.0.0</oim.version>
+
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <com.alibaba.cloud.version>2.2.3.RELEASE</com.alibaba.cloud.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <dependencies>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${com.alibaba.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- com.onlyxiahui start -->
+            <dependency>
+                <groupId>com.onlyxiahui.common</groupId>
+                <artifactId>only-common-message</artifactId>
+                <version>1.1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.onlyxiahui.common</groupId>
+                <artifactId>only-common-util</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.onlyxiahui.common</groupId>
+                <artifactId>only-common-action-annotation</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.onlyxiahui.framework</groupId>
+                <artifactId>only-json-validator</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.onlyxiahui.framework</groupId>
+                <artifactId>only-action-dispatcher</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.onlyxiahui.framework</groupId>
+                <artifactId>only-action-general</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.onlyxiahui.framework</groupId>
+                <artifactId>only-net-session</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.onlyxiahui.extend</groupId>
+                <artifactId>only-action-webflux-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.onlyxiahui.extend</groupId>
+                <artifactId>only-action-dispatcher-webflux-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.onlyxiahui.extend</groupId>
+                <artifactId>only-query-hibernate</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <!-- com.onlyxiahui end -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+
+
+            <!-- sharding start -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+            <!-- sharding end -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.70</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+
+            <!-- clean插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+
+            <!-- 忽略 junit测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <!-- compiler插件, 设定JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF8</encoding>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+
+            <!-- resource插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+
+            <!-- javadoc插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <!-- 关掉JDK1.8的变态检查 -->
+                        <!-- -->
+                        <configuration>
+                            <doclint>none</doclint>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- install插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+            </plugin>
+
+            <!-- deploy发布插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+
+            <!-- dependency插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <developers>
+        <developer>
+            <name>XiaHui</name>
+            <email>onlovexiahui@qq.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <!-- 用来支持项目发布到私服中,用来配合deploy插件的使用 -->
+    <distributionManagement>
+        <!-- 发布版本 -->
+        <repository>
+            <id>only-nexus-release</id>
+            <name>Nexus Release Repository</name>
+            <url>http://106.12.217.185:9005/repository/maven-releases/</url>
+        </repository>
+        <!-- 快照版本 -->
+        <snapshotRepository>
+            <id>only-nexus-snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://106.12.217.185:9005/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <url>http://106.12.217.185:9005/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>

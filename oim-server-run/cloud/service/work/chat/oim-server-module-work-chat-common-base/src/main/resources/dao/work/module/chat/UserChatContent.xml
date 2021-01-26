@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="chat.UserChatContent">
+
+		<query name="queryList" type="sql">
+			<content>
+                <![CDATA[
+	
+					select 
+					 	cc.*
+                    from 
+                    	im_user_chat_content cc 
+                    
+                    where 1=1
+                    
+                    <#if id?? && ''!=id >
+                    	and cc.id = :id
+                    </#if>
+                    
+                    <#if ownKey?? && ''!=ownKey >
+                    	and cc.ownKey = :ownKey
+                    </#if>
+                    
+                    <#if messageKey?? && ''!=messageKey >
+                    	and cc.messageKey = :messageKey
+                    </#if>
+                    
+                    <#if receiveUserId?? >
+                    	and cc.receiveUserId = :receiveUserId
+                    </#if>
+                    
+                    <#if sendUserId?? >
+                    	and cc.sendUserId = :sendUserId
+                    </#if>
+                    
+                    <#if isSend?? && ''!=isSend >
+                    	and cc.isSend = :isSend
+                    </#if>
+                    
+                    <#if isRead?? && ''!=isRead >
+                    	and cc.isRead = :isRead
+                    </#if>
+                    
+
+                    <#if outId?? >
+                    	and cc.id != :outId
+                    </#if>
+                    
+                    <#if outMessageKey?? >
+                    	and cc.messageKey != :outMessageKey
+                    </#if>
+                    
+                    <#if timestamp?? && 0!=timestamp >
+						and cc.timestamp ${compare} :timestamp
+                    </#if>
+                    
+                    <#if chatReceiveUserId?? && ''!=chatReceiveUserId >
+                    	and( cc.receiveUserId = :chatReceiveUserId or cc.sendUserId = :chatReceiveUserId )
+                    </#if>
+                    
+                    <#if chatSendUserId?? && ''!=chatSendUserId >
+                    	and( cc.sendUserId = :chatSendUserId or cc.receiveUserId = :chatSendUserId )
+                    </#if>
+			
+					<#if startTimestamp?? >
+                    	and cc.timestamp >= :startTimestamp
+                    </#if>
+                    
+                    <#if endTimestamp?? >
+                    	and cc.timestamp <= :endTimestamp
+                    </#if>
+                    
+                    <#if ids?? && (ids?size > 0) >
+                    	and cc.id in( :ids )
+                    </#if>
+                    
+                    <#if messageKeys?? && (messageKeys?size > 0) >
+                    	and cc.messageKey in( :messageKeys )
+                    </#if>
+
+                    order by cc.timestamp desc
+                ]]>
+			</content>
+		</query>
+
+	</space>
+</body>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="system.role">
+	
+		<query name="queryList" type="sql">
+			<content>
+				select * from m_role
+                <![CDATA[
+				where 1=1
+				<#if name?? && name != ''>and name like :name</#if>
+				<#if flag?? && flag != ''>and flag = :flag</#if>
+				<#if ids?? && (ids?size > 0)>
+					and id in ( :ids )
+				</#if>
+				<#if outIds?? && (outIds?size > 0)>
+					and id not in ( :outIds )
+				</#if>
+		   		<#if whereSQL?? && whereSQL != ''>${whereSQL}</#if>
+			   	<#if orderBy?? && orderBy != ''>${orderBy}</#if>
+                ]]>
+			</content>
+		</query>
+		
+	</space>
+</body>

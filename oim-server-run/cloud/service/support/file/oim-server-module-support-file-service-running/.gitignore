@@ -1,0 +1,117 @@
+# Java Compiled class file #
+*.class
+/bin
+
+
+# Log file
+*.log
+logs
+/logs
+*.log.gz
+/*/logs
+
+# BlueJ files
+*.ctxt
+
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+
+# Eclipse #
+.classpath
+.project
+.externalToolBuilders/
+.metadata
+.settings
+.myeclipse
+/.classpath
+/.project
+
+# Maven #
+/target/
+
+
+# IntelliJ #
+*.iml
+*.ipr
+*.iws
+.idea
+/.idea
+/out/
+/out
+/*/out
+/build
+/*/build
+
+# NetBeans #
+nbproject
+build
+build.xml
+manifest.mf
+nb-configuration.xml
+
+
+# Mobile Tools for Java (J2ME) #
+.mtj.tmp/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+
+# Mac #
+.DS_Store
+._*
+
+
+# gradle #
+/.gradle
+.gradle
+bin
+/bin
+gradle
+
+# rebel #
+rebel.xml
+
+.springBeans
+
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+.mvn/
+bootstrap-config.properties

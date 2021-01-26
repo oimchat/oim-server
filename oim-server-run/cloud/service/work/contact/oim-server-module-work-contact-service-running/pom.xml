@@ -1,0 +1,177 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.oimchat.server</groupId>
+		<artifactId>oim-server-base-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../../../common/oim-server-base-parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>oim-server-module-work-contact-service-running</artifactId>
+	<packaging>jar</packaging>
+
+	<name>${project.artifactId}</name>
+	<url></url>
+	<description></description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-contact-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onlyxiahui.aware</groupId>
+			<artifactId>aware-extend-spring-cloud-feign</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-cloud-run-common-basic</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-cloud-run-common-work</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-cloud-run-dependency-webflux-eureka</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-cloud-run-action-register</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-sharding</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onlyxiahui.wofa</groupId>
+			<artifactId>wofa-server-net-push-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-cloud-net-impl-rabbit-producer</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>config</targetPath>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+					<exclude>**/*.yml</exclude>
+				</excludes>
+			</resource>
+			<!-- 过滤脚本文件到bin目录 -->
+			<resource>
+				<directory>src/main/scripts</directory>
+				<filtering>true</filtering>
+				<targetPath>bin</targetPath>
+				<includes>
+					<include>*.bat</include>
+					<include>*.sh</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- 忽略 junit测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<!-- The configuration of maven-assembly-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<!-- <version>2.4</version> -->
+				<!-- The configuration of the plugin -->
+				<configuration>
+					<!-- 是否含id -->
+					<appendAssemblyId>false</appendAssemblyId>
+					<!-- Specifies the configuration file of the assembly plugin -->
+					<descriptors>
+						<descriptor>src/main/assembly/package.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>config</id>
+			<properties>
+				<env>config</env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+</project>

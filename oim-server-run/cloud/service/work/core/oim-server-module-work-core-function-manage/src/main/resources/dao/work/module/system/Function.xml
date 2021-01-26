@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="system.function">
+	
+		<query name="queryList" type="hql">
+			<content>
+				from ${entityName}
+                <![CDATA[
+				where 1=1
+				<#if name?? && name != ''>and name = :name</#if>
+				<#if likeName?? && likeName != ''>and name like :likeName</#if>
+				<#if superId?? && superId != ''>and superId = :superId</#if>
+				<#if isDisable?? && isDisable != ''>and isDisable = :isDisable</#if>
+				<#if ids?? && (ids?size > 0)>
+					and id in ( :ids )
+				</#if>
+				<#if outIds?? && (outIds?size > 0)>
+					and id not in ( :outIds )
+				</#if>
+		   		<#if whereSQL?? && whereSQL != ''>${whereSQL}</#if>
+			   	<#if orderBy?? && orderBy != ''>${orderBy}</#if>
+                ]]>
+			</content>
+		</query>
+		
+		<query name="getMaxSortBySuperId" type="hql">
+			<content>
+                <![CDATA[
+					select max(sort) from ${entityName} where superId = :superId
+                ]]>
+			</content>
+		</query>
+		
+		<query name="updateSuperId" type="sql">
+			<content>
+                <![CDATA[
+					update m_function set superId = :superId
+	    			where id = :id
+                ]]>
+			</content>
+		</query>
+	
+		<query name="updateSort" type="hql">
+			<content>
+                <![CDATA[
+					update ${entityName} set sort = :sort
+	    			where id = :id
+                ]]>
+			</content>
+		</query>
+
+	</space>
+</body>

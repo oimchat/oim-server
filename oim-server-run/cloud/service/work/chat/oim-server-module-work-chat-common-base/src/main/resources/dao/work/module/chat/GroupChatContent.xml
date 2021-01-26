@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="chat.GroupChatContent">
+
+		<query name="queryList" type="sql">
+			<content>
+                <![CDATA[
+					select 
+						cc.*
+						
+                    from im_group_chat_content cc
+                    where 1=1
+
+                    <#if id?? && ''!=id >
+                    	and cc.id = :id
+                    </#if>
+                    
+                    <#if groupId?? >
+                    	and cc.groupId = :groupId
+                    </#if>
+                    
+                    <#if userId?? >
+                    	and cc.userId = :userId
+                    </#if>
+                    
+                     <#if outId?? >
+                    	and cc.id != :outId
+                    </#if>
+                    
+                    <#if outMessageKey?? >
+                    	and cc.messageKey != :outMessageKey
+                    </#if>
+                    
+                    <#if timestamp?? && 0!=timestamp >
+						and cc.timestamp ${compare} :timestamp
+                    </#if>
+                    
+					<#if startTimestamp?? >
+                    	and cc.timestamp >= :startTimestamp
+                    </#if>
+                    
+                    <#if endTimestamp?? >
+                    	and cc.timestamp <= :endTimestamp
+                    </#if>
+                    
+                    <#if ids?? && (ids?size > 0) >
+                    	and cc.id in( :ids )
+                    </#if>
+                    
+                    <#if messageKeys?? && (messageKeys?size > 0) >
+                    	and cc.messageKey in( :messageKeys )
+                    </#if>
+                    
+                    order by cc.`timestamp` desc
+                ]]>
+			</content>
+		</query>
+
+	</space>
+</body>

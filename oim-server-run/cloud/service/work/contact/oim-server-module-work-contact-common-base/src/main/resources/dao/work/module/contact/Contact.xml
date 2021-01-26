@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="user.contact">
+        <!-- 根据分组所属的用户id，获取用户分组中的所有成员 -->
+        <query name="getUserDataListByContactRelationOwnerUserId" type="sql">
+            <content>
+                <![CDATA[
+                select
+					u.*
+				from
+					im_user u
+				left join im_contact_relation ucm on ucm.contactUserId = u.id
+				where
+					1 = 1
+				and ucm.ownerUserId = :ownerUserId
+
+                ]]>
+            </content>
+        </query>
+    </space>
+
+</body>

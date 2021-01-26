@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+	<space name="chat.RecentChat">
+
+		<query name="queryList" type="sql">
+			<content>
+                <![CDATA[
+					select 
+					 	*
+					from
+						im_recent_chat
+                    where 1=1
+                    
+                    <#if userId?? >
+                    	and userId = :userId
+                    </#if>
+                    
+                    <#if contentId?? >
+                    	and contentId = :contentId
+                    </#if>
+                    
+                    <#if messageKey?? >
+                    	and messageKey = :messageKey
+                    </#if>
+                    
+                    <#if chatId?? >
+                    	and chatId = :chatId
+                    </#if>
+                    
+                    <#if type?? >
+                    	and type = :type
+                    </#if>
+
+                    <#if timestamp?? && 0!=timestamp >
+						and timestamp = :timestamp
+                    </#if>
+                    
+                    order by timestamp desc
+                ]]>
+			</content>
+		</query>
+	</space>
+</body>

@@ -1,0 +1,79 @@
+.common-list-pane {
+  .el-form-item {
+    margin-bottom: 15px;
+  }
+}
+
+.common-list-pane-search {
+  background: #f2f2f2;
+  padding: 10px;
+  //border:1px solid #dfe6ec;
+  margin: 10px 0 20px;
+
+  .el-form-item {
+    margin-bottom: 10px;
+  }
+
+  .el-input__inner {
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .el-button {
+    padding: 8px 15px;
+  }
+}
+
+.common-list-pane-pagination {
+  text-align: right;
+  padding: 15px 24px;
+  //padding-bottom: 46px;
+
+  .el-pagination__total, .el-pagination__sizes {
+    float: left;
+    margin-top: 5px;
+  }
+
+  .el-pagination * {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+  }
+
+  .el-pagination__editor.el-input,
+  .el-input__inner {
+    height: 36px;
+    line-height: 36px;
+  }
+
+  .el-pagination.is-background,
+  .btn-next,
+  .el-pagination.is-background,
+  .btn-prev,
+  .el-pagination.is-background,
+  .el-pager li {
+    padding: 0 11px;
+    height: 36px;
+    line-height: 36px;
+  }
+
+  .el-pagination.is-background .el-pager li {
+    padding: 0 14px;
+    border: 1px solid rgba(220, 220, 220, 1);
+    border-radius: 2px;
+  }
+
+  .el-pagination.is-background .el-pager li:not(.disabled).active {
+    // background-color: $blue-color;
+    border: none;
+    color: #fff;
+  }
+
+  .el-pagination.is-background .el-pager li:not(.disabled):hover {
+    // color: $blue-active-color;
+  }
+}
+
+
+.edit-dialog-footer {
+  text-align: right;
+}

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.oimchat.server.run.db.config.AwareHibernateRepositoryConfig

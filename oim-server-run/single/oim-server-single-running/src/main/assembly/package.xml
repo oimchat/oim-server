@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+	<id>bin</id>
+	<!-- 最终打包成一个用于发布的zip文件 -->
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<!-- 不使用项目的artifact，第三方jar不要解压，打包进根目录的lib目录 -->
+			<useProjectArtifact>false</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+			<unpack>false</unpack>
+			<excludes>
+				<exclude>ink.oim.*:*</exclude>
+				<exclude>com.oimchat.server:*</exclude>
+			</excludes>
+		</dependencySet>
+		<dependencySet>
+			<!-- 不使用项目的artifact，第三方jar不要解压，打包进根目录的module目录 -->
+			<useProjectArtifact>false</useProjectArtifact>
+			<outputDirectory>module</outputDirectory>
+			<unpack>false</unpack>
+			<includes>
+				<include>ink.oim.*:*</include>
+				<include>com.oimchat.server:*</include>
+			</includes>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>${build.outputDirectory}/config</directory>
+			<outputDirectory>config</outputDirectory>
+			<fileMode>0644</fileMode>
+		</fileSet>
+		<!-- 把项目的脚本文件目录中的启动脚本文件，打包进文件的根目录 -->
+		<fileSet>
+			<directory>${build.outputDirectory}/bin</directory>
+			<outputDirectory></outputDirectory>
+			<fileMode>0755</fileMode>
+		</fileSet>
+		<!-- 把项目自己编译出来的jar文件，打包进tar.gz文件的根目录 -->
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<fileMode>0755</fileMode>
+		</fileSet>
+	</fileSets>
+</assembly> 

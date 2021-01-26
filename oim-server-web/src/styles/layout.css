@@ -1,0 +1,490 @@
+/*html {*/
+/*-ms-text-size-adjust: 100%;*/
+/*-webkit-text-size-adjust: 100%*/
+/*}*/
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    /*overflow-x: hidden;*/
+    /*overflow-y: hidden;*/
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6
+}
+
+a, button, input, textarea {
+    outline: 0
+}
+
+body, dd, dl, fieldset, h1, h2, h3, h4, h5, h6, ol, p, textarea, ul {
+    margin: 0
+}
+
+fieldset, input, legend, textarea {
+    padding: 0
+}
+
+ol, ul {
+    padding-left: 0;
+    list-style-type: none
+}
+
+a img, fieldset {
+    border: 0
+}
+
+audio, canvas, video {
+    display: inline-block
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden] {
+    display: none
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 0
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+    cursor: pointer;
+    -webkit-appearance: button
+}
+
+button[disabled], html input[disabled] {
+    cursor: default
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type=search] {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box
+}
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: none
+}
+
+input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+    box-shadow: inset 0 0 0 1000px #fff;
+    -moz-box-shadow: inset 0 0 0 1000px #fff;
+    -webkit-box-shadow: inset 0 0 0 1000px #fff
+}
+
+select {
+    border-radius: 0;
+    -webkit-border-radius: 0
+}
+
+
+pre {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre-wrap;
+    word-break: normal
+}
+
+/*************************scrollbar****************************/
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #737373
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent
+}
+
+.scroll-wrapper {
+    /*overflow: hidden !important;*/
+    padding: 0 !important;
+    position: relative
+}
+
+.scroll-wrapper > .scroll-content {
+    border: none !important;
+    box-sizing: content-box !important;
+    height: auto;
+    left: 0;
+    margin: 0;
+    max-height: none !important;
+    max-width: none !important;
+    overflow: scroll !important;
+    padding: 0;
+    position: relative !important;
+    top: 0;
+    width: auto !important
+}
+
+.scroll-wrapper > .scroll-content::-webkit-scrollbar {
+    height: 0;
+    width: 0
+}
+
+.scroll-element {
+    display: none
+}
+
+.scroll-element, .scroll-element div {
+    box-sizing: content-box
+}
+
+.scroll-element.scroll-x.scroll-scrollx_visible, .scroll-element.scroll-y.scroll-scrolly_visible {
+    display: block;
+    visibility: hidden
+}
+
+.scrollbar-dynamic:hover .scroll-element.scroll-x.scroll-scrollx_visible, .scrollbar-dynamic:hover .scroll-element.scroll-y.scroll-scrolly_visible {
+    visibility: visible
+}
+
+.scroll-element .scroll-arrow, .scroll-element .scroll-bar {
+    cursor: default
+}
+
+.scroll-textarea {
+    border: 1px solid #ccc;
+    border-top-color: #999
+}
+
+.scroll-textarea > .scroll-content {
+    overflow: hidden !important
+}
+
+.scroll-textarea > .scroll-content > textarea {
+    border: none !important;
+    box-sizing: border-box;
+    height: 100% !important;
+    margin: 0;
+    max-height: none !important;
+    max-width: none !important;
+    overflow: scroll !important;
+    outline: none;
+    padding: 2px;
+    position: relative !important;
+    top: 0;
+    width: 100% !important
+}
+
+.scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {
+    height: 0;
+    width: 0
+}
+
+.scrollbar-dynamic > .scroll-element, .scrollbar-dynamic > .scroll-element div {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10
+}
+
+.scrollbar-dynamic > .scroll-element div {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-x {
+    bottom: 2px;
+    height: 7px;
+    left: 0;
+    min-width: 100%;
+    width: 100%
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-y {
+    height: 100%;
+    min-height: 100%;
+    right: 2px;
+    top: 0;
+    width: 7px
+}
+
+.scrollbar-dynamic > .scroll-element .scroll-element_outer {
+    opacity: .3;
+    border-radius: 12px
+}
+
+.scrollbar-dynamic > .scroll-element .scroll-element_size {
+    background-color: #ccc;
+    opacity: 0;
+    border-radius: 12px;
+    transition: opacity .2s
+}
+
+.scrollbar-dynamic > .scroll-element .scroll-bar {
+    background-color: #6c6e71;
+    border-radius: 7px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-x .scroll-bar {
+    bottom: 0;
+    height: 7px;
+    min-width: 24px;
+    top: auto
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-y .scroll-bar {
+    left: auto;
+    min-height: 24px;
+    right: 0;
+    width: 7px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-x .scroll-element_outer {
+    bottom: 0;
+    top: auto;
+    left: 2px;
+    transition: height .2s
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-y .scroll-element_outer {
+    left: auto;
+    right: 0;
+    top: 2px;
+    transition: width .2s
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-x .scroll-element_size {
+    left: -4px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-y .scroll-element_size {
+    top: -4px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size {
+    left: -11px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size {
+    top: -11px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-draggable .scroll-element_outer, .scrollbar-dynamic > .scroll-element:hover .scroll-element_outer {
+    overflow: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    opacity: .7
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-draggable .scroll-element_outer .scroll-element_size, .scrollbar-dynamic > .scroll-element:hover .scroll-element_outer .scroll-element_size {
+    opacity: 1
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-draggable .scroll-element_outer .scroll-bar, .scrollbar-dynamic > .scroll-element:hover .scroll-element_outer .scroll-bar {
+    height: 100%;
+    width: 100%;
+    border-radius: 12px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-x.scroll-draggable .scroll-element_outer, .scrollbar-dynamic > .scroll-element.scroll-x:hover .scroll-element_outer {
+    height: 20px;
+    min-height: 7px
+}
+
+.scrollbar-dynamic > .scroll-element.scroll-y.scroll-draggable .scroll-element_outer, .scrollbar-dynamic > .scroll-element.scroll-y:hover .scroll-element_outer {
+    min-width: 7px;
+    width: 8px
+}
+
+.scrollbar-chrome > .scroll-element, .scrollbar-chrome > .scroll-element div {
+    border: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    z-index: 10
+}
+
+.scrollbar-chrome > .scroll-element {
+    background-color: #fff
+}
+
+.scrollbar-chrome > .scroll-element div {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%
+}
+
+.scrollbar-chrome > .scroll-element .scroll-element_track {
+    background: #f1f1f1;
+    border: 1px solid #dbdbdb
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x {
+    bottom: 0;
+    height: 16px;
+    left: 0;
+    min-width: 100%;
+    width: 100%
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y {
+    height: 100%;
+    min-height: 100%;
+    right: 0;
+    top: 0;
+    width: 16px
+}
+
+.scrollbar-chrome > .scroll-element .scroll-bar {
+    background-color: #d9d9d9;
+    border: 1px solid #bdbdbd;
+    cursor: default;
+    border-radius: 2px
+}
+
+.scrollbar-chrome > .scroll-element .scroll-bar:hover {
+    background-color: #c2c2c2;
+    border-color: #a9a9a9
+}
+
+.scrollbar-chrome > .scroll-element.scroll-draggable .scroll-bar {
+    background-color: #919191;
+    border-color: #7e7e7e
+}
+
+.scrollbar-chrome > .scroll-content.scroll-scrolly_visible {
+    left: -16px;
+    margin-left: 16px
+}
+
+.scrollbar-chrome > .scroll-content.scroll-scrollx_visible {
+    top: -16px;
+    margin-top: 16px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x .scroll-bar {
+    height: 8px;
+    min-width: 10px;
+    top: 3px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y .scroll-bar {
+    left: 3px;
+    min-height: 10px;
+    width: 8px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x .scroll-element_outer {
+    border-left: 1px solid #dbdbdb
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x .scroll-element_track {
+    height: 14px;
+    left: -3px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x .scroll-element_size {
+    height: 14px;
+    left: -4px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y .scroll-element_outer {
+    border-top: 1px solid #dbdbdb
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y .scroll-element_track {
+    top: -3px;
+    width: 14px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y .scroll-element_size {
+    top: -4px;
+    width: 14px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size {
+    left: -19px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size {
+    top: -19px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_track {
+    left: -19px
+}
+
+.scrollbar-chrome > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_track {
+    top: -19px
+}
+
+@keyframes a {
+    0% {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+@keyframes b {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+/*************************scrollbar****************************/
+
+
+/***************************compatible*******************************/
+
+
+/***************************compatible*******************************/

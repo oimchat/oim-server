@@ -1,0 +1,161 @@
+
+
+
+
+<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-common-data</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-common-util</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-common-work</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-definition-auth</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-definition-net</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-basic</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-sharding</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-dependency-webflux-boot</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-net-work-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+
+		<!-- -->
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-support-file-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-support-file-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-support-file-function-manage</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-system-setting-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-chat-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-chat-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-chat-function-manage</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-contact-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-contact-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-contact-function-manage</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-core-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-core-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-core-function-manage</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-group-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-group-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-group-function-manage</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-portal-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-portal-function-business</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-portal-function-manage</artifactId>
+			<version>${oim.version}</version>
+		</dependency>

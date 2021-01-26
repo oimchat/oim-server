@@ -1,0 +1,188 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.oimchat.server</groupId>
+		<artifactId>oim-server-base-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../../../common/oim-server-base-parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>oim-server-module-work-notice-function-business</artifactId>
+	<packaging>jar</packaging>
+
+	<name>${project.artifactId}</name>
+	<url></url>
+	<description></description>
+
+	<properties>
+		<!-- 属性定义 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.onlyxiahui.aware</groupId>
+			<artifactId>aware-common-auth</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-definition-auth</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-module-work-notice-common-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+
+			<!-- clean插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+			</plugin>
+
+			<!-- 忽略 junit测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<!-- compiler插件, 设定JDK版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF8</encoding>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+
+			<!-- resource插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/java</directory>
+									<includes>
+										<include>**/*.java</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- javadoc插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<charset>UTF-8</charset>
+					<encoding>UTF-8</encoding>
+					<docencoding>UTF-8</docencoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<!-- 关掉JDK1.8的变态检查 -->
+						<!-- -->
+						<configuration>
+							<doclint>none</doclint>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- install插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+			</plugin>
+
+			<!-- deploy发布插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+			</plugin>
+
+			<!-- dependency插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<developers>
+		<developer>
+			<name>XiaHui</name>
+			<email>onlovexiahui@qq.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+	<!-- 用来支持项目发布到私服中,用来配合deploy插件的使用 -->
+	<distributionManagement>
+		<!-- 发布版本 -->
+		<repository>
+			<id>only-nexus-release</id>
+			<name>Nexus Release Repository</name>
+			<url>http://106.12.217.185:9005/repository/maven-releases/</url>
+		</repository>
+		<!-- 快照版本 -->
+		<snapshotRepository>
+			<id>only-nexus-snapshots</id>
+			<name>Nexus Snapshots Repository</name>
+			<url>http://106.12.217.185:9005/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<url>http://106.12.217.185:9005/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>
