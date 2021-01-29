@@ -5,28 +5,6 @@
 	<formats>
 		<format>tar.gz</format>
 	</formats>
-	<dependencySets>
-		<dependencySet>
-			<!-- 不使用项目的artifact，第三方jar不要解压，打包进根目录的lib目录 -->
-			<useProjectArtifact>false</useProjectArtifact>
-			<outputDirectory>lib</outputDirectory>
-			<unpack>false</unpack>
-			<excludes>
-				<exclude>ink.oim.*:*</exclude>
-				<exclude>com.oimchat.server:*</exclude>
-			</excludes>
-		</dependencySet>
-		<dependencySet>
-			<!-- 不使用项目的artifact，第三方jar不要解压，打包进根目录的module目录 -->
-			<useProjectArtifact>false</useProjectArtifact>
-			<outputDirectory>module</outputDirectory>
-			<unpack>false</unpack>
-			<includes>
-				<include>ink.oim.*:*</include>
-				<include>com.oimchat.server:*</include>
-			</includes>
-		</dependencySet>
-	</dependencySets>
 	<fileSets>
 		<fileSet>
 			<directory>${build.outputDirectory}/config</directory>

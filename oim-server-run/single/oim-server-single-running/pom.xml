@@ -128,62 +128,9 @@
 			</resource>
 		</resources>
 		<plugins>
-			<!-- jar包内剔除所有配置文件 -->
-			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 -->
-						<addMavenDescriptor>false</addMavenDescriptor>
-						<!-- Manifest specific configuration -->
-						<manifest>
-							<!-- 是否要把第三方jar放到manifest的classpath中 -->
-							<addClasspath>true</addClasspath>
-							<!-- 生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/ -->
-							<!-- <classpathPrefix>lib</classpathPrefix> -->
-							<!-- 应用的main class -->
-							<mainClass>ink.oim.SingleApplication</mainClass>
-							<classpathLayoutType>custom</classpathLayoutType>
-							<customClasspathLayout>
-								lib/$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}
-								module/$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}
-							</customClasspathLayout>
-						</manifest>
-					</archive>
-					<!--不打入jar包的文件类型或者路径 -->
-					<excludes>
-						<exclude>**/*.properties</exclude>
-						<exclude>**/*.yml</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<configuration>
-					<includeClassifiers>sources</includeClassifiers>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>    <!-- hot deploy -->
-					<includes>   <!-- exclude third part jar files -->
-						<include>
-							<groupId>nothing</groupId>
-							<artifactId>nothing</artifactId>
-						</include>
-					</includes>
-					<!-- <classifier>exec</classifier> -->
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<!-- 忽略 junit测试 -->
 			<plugin>
@@ -193,12 +140,16 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<!-- The configuration of maven-assembly-plugin -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<!-- <version>3.1.0</version> -->
+				<!-- <version>2.4</version> -->
+				<!-- The configuration of the plugin -->
 				<configuration>
 					<!-- 是否含id -->
 					<appendAssemblyId>false</appendAssemblyId>
+					<!-- Specifies the configuration file of the assembly plugin -->
 					<descriptors>
 						<descriptor>src/main/assembly/package.xml</descriptor>
 					</descriptors>
@@ -215,16 +166,15 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>nexus</id>
-			<url>http://106.12.217.185:9005/repository/maven-public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+	<profiles>
+		<profile>
+			<id>config</id>
+			<properties>
+				<env>config</env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 </project>
