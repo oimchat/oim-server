@@ -24,6 +24,7 @@ import com.onlyxiahui.aware.common.auth.type.PermissionType;
 import com.onlyxiahui.common.action.description.DocumentService;
 import com.onlyxiahui.common.action.description.bean.MethodData;
 import com.onlyxiahui.common.action.description.bean.ModuleData;
+import com.onlyxiahui.common.utils.base.lang.string.StringUtil;
 import com.onlyxiahui.common.utils.base.security.Md5Util;
 import com.onlyxiahui.general.doc.spring.boot.bean.TreeNode;
 
@@ -112,11 +113,13 @@ public class InitializerFunction {
 
 				if (PermissionType.skip == type) {
 					for (String path : set) {
+						path = prependLeadingSlash(path);
 						skipPathBox.add(path);
 					}
 				}
 				if (PermissionType.grant == type) {
 					for (String path : set) {
+						path = prependLeadingSlash(path);
 						permissionPathBox.add(path);
 					}
 				}
@@ -209,6 +212,7 @@ public class InitializerFunction {
 			if (PermissionType.grant == type) {
 				if (null != actions && !actions.isEmpty()) {
 					for (String path : actions) {
+						path = prependLeadingSlash(path);
 						key = (StringUtils.isNotBlank(path)) ? Md5Util.lower32(path) : Md5Util.lower32(key);
 						Function f = new Function();
 						f.setId(key);
@@ -299,6 +303,15 @@ public class InitializerFunction {
 			}
 
 			functionService.saveOrUpdate("", functions);
+		}
+	}
+
+	private static String prependLeadingSlash(String pattern) {
+		String pre = "/";
+		if (StringUtil.isNotBlank(pattern) && !pattern.startsWith(pre)) {
+			return pre + pattern;
+		} else {
+			return pattern;
 		}
 	}
 }

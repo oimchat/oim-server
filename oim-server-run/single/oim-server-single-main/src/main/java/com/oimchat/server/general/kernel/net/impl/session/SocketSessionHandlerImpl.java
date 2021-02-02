@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.oimchat.server.basic.common.work.app.SessionEnum;
 import com.oimchat.server.basic.definition.auth.business.UserTokenAuthBox;
 import com.oimchat.server.general.kernel.net.module.system.function.SocketSessionFunction;
+import com.oimchat.server.general.kernel.net.module.system.push.SystemAuthPush;
 import com.oimchat.server.general.kernel.work.module.business.user.service.UserService;
 import com.onlyxiahui.aware.basic.work.business.error.SystemError;
 import com.onlyxiahui.common.lib.util.json.JsonUtil;
@@ -40,17 +41,17 @@ public class SocketSessionHandlerImpl implements SocketSessionHandler {
 	UserTokenAuthBox userAuthBox;
 	@Autowired
 	UserService userService;
+	@Autowired
+	SystemAuthPush systemAuthPush;
 
 	@Override
 	public void sessionPut(SocketSession socketSession) {
-		// TODO Auto-generated method stub
-
+		socketSessionBox.put(socketSession);
 	}
 
 	@Override
 	public boolean sessionHas(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return socketSessionBox.hasSession(key);
 	}
 
 	@Override

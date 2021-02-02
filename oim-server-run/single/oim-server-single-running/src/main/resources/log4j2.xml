@@ -6,7 +6,7 @@ Configuration后面的status，这个用于设置log4j2自身内部的信息输�
 <Configuration status="Error">
     <!-- 日志文件目录和压缩文件目录配置 -->
     <Properties>
-        <Property name="appName">oim-single-server</Property>
+        <Property name="appName">oim-server-single</Property>
         <Property name="logPath">logs</Property>
         <Property name="fileGz">logs/7z</Property>
         <Property name="consolePattern">

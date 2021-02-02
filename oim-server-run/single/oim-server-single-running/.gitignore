@@ -114,6 +114,6 @@ build/
 ### VS Code ###
 .vscode/
 .mvn/
-
+bootstrap-config.properties
 upload
 application-config.properties

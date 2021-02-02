@@ -116,3 +116,4 @@ build/
 .mvn/
 bootstrap-config.properties
 application-config.properties
+bootstrap-config.properties

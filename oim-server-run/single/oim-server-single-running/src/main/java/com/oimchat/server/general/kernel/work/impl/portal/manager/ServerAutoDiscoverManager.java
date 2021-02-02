@@ -100,11 +100,13 @@ public class ServerAutoDiscoverManager {
 
 		ServerAddressData mainHttp = new ServerAddressData();
 		// #聊天服务的http地址
-		mainHttp.setAddress(url + "/main");
+		mainHttp.setAddress(url);
 		mainHttp.setPort(0);
 		mainHttp.setProtocol(Protocol.HTTP.value());
 		mainHttp.setAddressType(AddressType.URL.value());
 		mainHttp.setEnabled(true);
+
+		mainAddresses.add(mainHttp);
 
 		mainServerData.setAddresses(mainAddresses);
 		mainServerData.setCode(main);

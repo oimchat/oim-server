@@ -54,8 +54,19 @@ public class ServerAddressChoiceService {
 		// 自动发现
 		List<ServerData> discoverList = serverAutoDiscoverManager.getServerDataList();
 
+		if (null == storeList) {
+			storeList = new ArrayList<>();
+		}
+		if (null == configList) {
+			configList = new ArrayList<>();
+		}
+		if (null == discoverList) {
+			discoverList = new ArrayList<>();
+		}
+
 		// host + "_" + serverTypeCode;
 		Map<String, ServerData> serverConfigDataMap = new HashMap<>();
+
 		for (ServerData scd : storeList) {
 			String host = "";
 			String serverTypeCode = scd.getCode();

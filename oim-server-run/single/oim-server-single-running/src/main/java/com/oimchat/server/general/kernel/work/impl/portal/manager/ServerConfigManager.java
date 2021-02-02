@@ -1,5 +1,6 @@
 package com.oimchat.server.general.kernel.work.impl.portal.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,6 @@ public class ServerConfigManager {
 	 */
 	public List<ServerData> getServerDataList() {
 		List<ServerData> list = serverDataProperties.getServerInfos();
-		return list;
+		return list == null ? new ArrayList<>() : list;
 	}
 }
