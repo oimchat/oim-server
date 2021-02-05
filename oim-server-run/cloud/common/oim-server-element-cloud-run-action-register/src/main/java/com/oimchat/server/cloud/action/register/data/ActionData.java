@@ -21,7 +21,7 @@ public class ActionData {
 	private String path;
 
 	@DocTitle("名称")
-	private String name;
+	private String title;
 
 	@DocTitle("功能描述")
 	private String introduce;
@@ -58,12 +58,12 @@ public class ActionData {
 		this.path = path;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getIntroduce() {

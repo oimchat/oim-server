@@ -82,11 +82,11 @@ public class ServerActionInfo extends PrimaryStringEntity {
 	 * 名称
 	 */
 	@DocTitle("名称")
-	@Length(min = 0, max = 256, message = "名称(name)长度不能超过{max}")
+	@Length(min = 0, max = 256, message = "名称(title)长度不能超过{max}")
 	@Comment("名称")
 	@ColumnDefault("''")
-	@Column(nullable = false, length = 256, name = "`name`")
-	private String name;
+	@Column(nullable = false, length = 256, name = "`title`")
+	private String title;
 
 	/**
 	 * 说明
@@ -174,12 +174,12 @@ public class ServerActionInfo extends PrimaryStringEntity {
 		this.path = path;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getIntroduce() {
@@ -221,5 +221,4 @@ public class ServerActionInfo extends PrimaryStringEntity {
 	public void setServiceTitle(String serviceTitle) {
 		this.serviceTitle = serviceTitle;
 	}
-
 }

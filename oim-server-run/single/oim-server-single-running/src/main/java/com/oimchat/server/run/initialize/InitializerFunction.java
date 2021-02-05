@@ -49,6 +49,8 @@ public class InitializerFunction {
 	@Autowired
 	FileServerConfig fileServerConfig;
 
+	FunctionConverter functionConverter = new FunctionConverter();
+
 	@PostConstruct
 	public void initDoc() {
 		skipPathBox.add("/doc/*");
@@ -130,119 +132,8 @@ public class InitializerFunction {
 	/*******************************/
 
 	public void initializeModule(List<ModuleData> list) {
-		List<Function> functions = getFunctions(list);
+		List<Function> functions = functionConverter.getFunctions(list);
 		functionService.saveOrUpdate("", functions);
-	}
-
-	public List<Function> getFunctions(List<ModuleData> list) {
-		Map<String, Function> map = new HashMap<>((null == list) ? 256 : list.size());
-		List<Function> functions = new ArrayList<>();
-		Map<String, String> tempMap = new HashMap<>(256);
-		if (null == list) {
-			return functions;
-		}
-		for (ModuleData n : list) {
-			String key = n.getKey();
-			String k = Md5Util.lower32(key);
-			n.setKey(k);
-			tempMap.put(key, k);
-		}
-
-		for (ModuleData n : list) {
-			String superKey = n.getSuperKey();
-			if (StringUtils.isNotBlank(superKey)) {
-				String sk = tempMap.get(superKey);
-				if (null != sk) {
-					superKey = sk;
-				} else {
-					superKey = "";
-				}
-				n.setSuperKey(superKey);
-			} else {
-				n.setSuperKey("");
-			}
-		}
-
-		for (ModuleData n : list) {
-
-			String key = n.getKey();
-			String superKey = n.getSuperKey();
-			String title = n.getTitle();
-
-			Function f = new Function();
-			f.setId(key);
-			f.setSuperId(superKey);
-			f.setName(title);
-			f.setPath("");
-
-			Function tn = map.get(key);
-			if (tn == null) {
-				map.put(key, f);
-
-				List<MethodData> methods = n.getMethods();
-				if (null != methods && !methods.isEmpty()) {
-					List<Function> fs = getFunctions(map, key, methods);
-					if (null != fs && !fs.isEmpty()) {
-						functions.add(f);
-						functions.addAll(fs);
-					}
-				}
-			}
-		}
-		return functions;
-	}
-
-	public List<Function> getFunctions(Map<String, Function> map, String superKey, List<MethodData> methods) {
-		List<Function> functions = new ArrayList<>();
-		for (MethodData md : methods) {
-			String key = md.getKey();
-			String title = md.getTitle();
-			Set<String> actions = md.getActions();
-
-			PermissionType type = PermissionType.auth;
-			Map<String, Object> extend = md.getExtend();
-			if (null != extend && extend.containsKey(PermissionMapping.class.getName())) {
-				Object o = extend.get(PermissionMapping.class.getName());
-				if (o instanceof PermissionMapping) {
-					PermissionMapping pm = (PermissionMapping) o;
-					type = pm.type();
-				}
-			}
-
-			if (PermissionType.grant == type) {
-				if (null != actions && !actions.isEmpty()) {
-					for (String path : actions) {
-						path = prependLeadingSlash(path);
-						key = (StringUtils.isNotBlank(path)) ? Md5Util.lower32(path) : Md5Util.lower32(key);
-						Function f = new Function();
-						f.setId(key);
-						f.setSuperId(superKey);
-						f.setName(title);
-						f.setPath(path);
-
-						Function tn = map.get(key);
-						if (tn == null) {
-							map.put(key, f);
-							functions.add(f);
-						}
-					}
-				} else {
-					key = Md5Util.lower32(key);
-					Function f = new Function();
-					f.setId(key);
-					f.setSuperId(superKey);
-					f.setName(title);
-					f.setPath("");
-
-					Function tn = map.get(key);
-					if (tn == null) {
-						map.put(key, f);
-						functions.add(f);
-					}
-				}
-			}
-		}
-		return functions;
 	}
 
 	public void initialize(List<TreeNode> allList) {
@@ -255,7 +146,7 @@ public class InitializerFunction {
 			for (TreeNode n : allList) {
 				String key = n.getKey();
 				String path = n.getPath();
-
+				path = prependLeadingSlash(path);
 				key = (StringUtils.isNotBlank(path)) ? Md5Util.lower32(path) : Md5Util.lower32(key);
 				n.setKey(key);
 			}
@@ -284,6 +175,7 @@ public class InitializerFunction {
 //				boolean action = n.isAction();
 
 				String path = n.getPath();
+				path = prependLeadingSlash(path);
 				Function f = new Function();
 				f.setId(key);
 				f.setSuperId(superKey);

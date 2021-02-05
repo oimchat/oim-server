@@ -101,7 +101,7 @@ public class ActionMappingHandler {
 			ActionData f = new ActionData();
 			f.setKey(key);
 			f.setSuperKey(superKey);
-			f.setName(title);
+			f.setTitle(title);
 			f.setPath("");
 			f.setIsAction(0);
 
@@ -148,7 +148,7 @@ public class ActionMappingHandler {
 					ActionData f = new ActionData();
 					f.setKey(key);
 					f.setSuperKey(superKey);
-					f.setName(title);
+					f.setTitle(title);
 					f.setPath(path);
 					f.setPermissionType(permissionType);
 					f.setIsAction(1);
@@ -164,7 +164,7 @@ public class ActionMappingHandler {
 				ActionData f = new ActionData();
 				f.setKey(key);
 				f.setSuperKey(superKey);
-				f.setName(title);
+				f.setTitle(title);
 				f.setPath("");
 				f.setPermissionType(permissionType);
 				f.setIsAction(1);
