@@ -1,5 +1,5 @@
 
-package com.oimchat.server.run.g;
+package com.oimchat.server.run.portal;
 
 import java.util.List;
 

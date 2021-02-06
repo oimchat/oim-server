@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.oimchat.server.general.kernel.work.common.config.constant.ServerConstant;
 import com.oimchat.server.general.kernel.work.module.base.portal.data.ServerAddressData;
 import com.oimchat.server.general.kernel.work.module.base.portal.data.ServerData;
-import com.oimchat.server.run.g.ServerDataProperties;
+import com.oimchat.server.run.portal.ServerDataProperties;
 import com.onlyxiahui.aware.basic.work.type.net.AddressType;
 import com.onlyxiahui.aware.basic.work.type.net.Protocol;
 import com.onlyxiahui.common.utils.base.lang.string.StringUtil;

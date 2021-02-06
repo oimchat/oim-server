@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oimchat.server.general.kernel.work.module.base.portal.data.ServerData;
-import com.oimchat.server.run.g.ServerDataProperties;
+import com.oimchat.server.run.portal.ServerDataProperties;
 
 /**
  * Date 2019-01-15 22:10:39<br>

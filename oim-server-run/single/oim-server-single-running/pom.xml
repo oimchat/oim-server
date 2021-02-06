@@ -21,7 +21,6 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -36,10 +35,9 @@
 
 		<dependency>
 			<groupId>com.oimchat.server</groupId>
-			<artifactId>oim-server-single-main</artifactId>
+			<artifactId>oim-server-single-initiate</artifactId>
 			<version>${oim.version}</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,45 +49,6 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.onlyxiahui.aware</groupId>
-			<artifactId>aware-run-doc-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.onlyxiahui.wofa</groupId>
-			<artifactId>wofa-server-run-netty-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.onlyxiahui.wofa</groupId>
-			<artifactId>wofa-server-net-push-spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.onlyxiahui.aware</groupId>
-			<artifactId>aware-basic-extend</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.oimchat.server</groupId>
-			<artifactId>oim-server-element-basic-run-common-db-base</artifactId>
-			<version>${oim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oimchat.server</groupId>
-			<artifactId>oim-server-element-basic-run-common-db-sharding</artifactId>
-			<version>${oim.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oimchat.server</groupId>
-			<artifactId>oim-server-element-basic-run-dependency-webflux-boot</artifactId>
-			<version>${oim.version}</version>
 		</dependency>
 	</dependencies>
 

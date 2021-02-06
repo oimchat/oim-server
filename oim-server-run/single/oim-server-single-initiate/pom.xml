@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.oimchat.server</groupId>
+		<artifactId>oim-server-base-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../cloud/common/oim-server-base-parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>oim-server-single-initiate</artifactId>
+	<name>${project.artifactId}</name>
+	<url></url>
+	<description></description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-single-combine</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onlyxiahui.aware</groupId>
+			<artifactId>aware-run-doc-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.onlyxiahui.wofa</groupId>
+			<artifactId>wofa-server-run-netty-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.onlyxiahui.wofa</groupId>
+			<artifactId>wofa-server-net-push-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.onlyxiahui.aware</groupId>
+			<artifactId>aware-basic-extend</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-base</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-common-db-sharding</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oimchat.server</groupId>
+			<artifactId>oim-server-element-basic-run-dependency-webflux-boot</artifactId>
+			<version>${oim.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+
+			<!-- clean插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+
+			<!-- resources插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+
+			<!-- compiler插件, 设定JDK版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF8</encoding>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+
+			<!-- 忽略junit测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<!-- javadoc插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<charset>UTF-8</charset>
+					<encoding>UTF-8</encoding>
+					<docencoding>UTF-8</docencoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<!-- 关掉JDK1.8的变态检查 -->
+						<!-- -->
+						<configuration>
+							<doclint>none</doclint>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- dependency插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.2</version>
+			</plugin>
+
+			<!-- install插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+			</plugin>
+
+			<!-- deploy发布插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<!-- 更新元数据 <configuration><updateReleaseInfo>true</updateReleaseInfo> 
+					</configuration> -->
+			</plugin>
+		</plugins>
+	</build>
+</project>

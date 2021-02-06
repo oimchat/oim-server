@@ -17,6 +17,8 @@
 	</properties>
 
 	<modules>
+		<module>../cloud/common/oim-server-base-parent</module>
+
 		<module>../cloud/common/oim-server-element-basic-common-data</module>
 		<module>../cloud/common/oim-server-element-basic-common-util</module>
 		<module>../cloud/common/oim-server-element-basic-common-work</module>
@@ -58,7 +60,8 @@
 		<module>../cloud/service/work/portal/oim-server-module-work-portal-function-business</module>
 		<module>../cloud/service/work/portal/oim-server-module-work-portal-function-manage</module>
 
-		<module>oim-server-single-main</module>
+		<module>oim-server-single-combine</module>
+		<module>oim-server-single-initiate</module>
 		<module>oim-server-single-running</module>
 	</modules>
 
@@ -70,8 +73,6 @@
 
 	<build>
 		<plugins>
-
 		</plugins>
 	</build>
-
 </project>
