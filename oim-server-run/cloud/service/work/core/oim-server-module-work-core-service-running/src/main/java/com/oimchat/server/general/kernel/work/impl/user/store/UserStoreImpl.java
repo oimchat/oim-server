@@ -195,13 +195,13 @@
  * 
  **/
 
-package com.oimchat.server.general.kernel.work.impl.chat.store;
+package com.oimchat.server.general.kernel.work.impl.user.store;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentSkipListMap;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.oimchat.server.basic.definition.session.SocketSessionStore;
+import com.oimchat.server.cloud.run.common.work.cache.CommonCache;
 import com.oimchat.server.general.kernel.work.define.user.store.UserStore;
 import com.oimchat.server.general.kernel.work.module.base.user.data.dto.UserData;
 
@@ -217,10 +217,11 @@ import com.oimchat.server.general.kernel.work.module.base.user.data.dto.UserData
 @Component
 public class UserStoreImpl implements UserStore {
 
-	private Map<String, String> userStatusMap = new ConcurrentSkipListMap<String, String>();
+	@Autowired
+	CommonCache commonCache;
 
-//	@Resource
-//	CommonCache commonCache;
+	@Autowired
+	SocketSessionStore socketSessionStore;
 
 	@Override
 	public void put(UserData userData) {
@@ -236,11 +237,15 @@ public class UserStoreImpl implements UserStore {
 	@Override
 	public void putStatus(String userId, String status) {
 		status = null == status ? "1" : status;
-		userStatusMap.put(userId, status);
+		commonCache.putInHash(UserStoreCacheKey.status.key("status"), userId, status);
 	}
 
 	@Override
 	public String getStatus(String userId) {
-		return userStatusMap.get(userId);
+		if (!socketSessionStore.has(userId)) {
+			return null;
+		}
+		Object o = commonCache.getFromHash(UserStoreCacheKey.status.key("status"), userId);
+		return null == o ? null : o.toString();
 	}
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oimchat.server.general.kernel.work.module.manage.system.data.FunctionQuery;
 import com.oimchat.server.general.kernel.work.module.manage.system.entity.Function;
 import com.oimchat.server.general.kernel.work.module.manage.system.service.FunctionService;
+import com.onlyxiahui.aware.common.auth.annotation.PermissionMapping;
+import com.onlyxiahui.aware.common.auth.type.PermissionType;
 import com.onlyxiahui.common.annotation.parameter.Define;
 import com.onlyxiahui.common.data.common.data.ListBody;
 import com.onlyxiahui.common.message.bean.Info;
@@ -35,6 +37,7 @@ public class FunctionController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/function/all.list")
 	public ListBody<List<Function>> allList() {
 		List<Function> list = functionService.getAllList();
@@ -51,6 +54,7 @@ public class FunctionController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/function/update.is.disable")
 	public Info updateIsDisable(
 			@Define("body.id") String id,
@@ -68,6 +72,7 @@ public class FunctionController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/function/get.list")
 	public ListBody<List<Function>> getList(
 			@Define("body.query") FunctionQuery query) {

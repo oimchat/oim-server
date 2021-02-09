@@ -69,7 +69,7 @@ public class ContactCategory extends PrimaryStringEntity {
 		return sort;
 	}
 
-	public void setSort(int sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
 
@@ -77,7 +77,7 @@ public class ContactCategory extends PrimaryStringEntity {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 

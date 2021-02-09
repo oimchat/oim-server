@@ -1,5 +1,5 @@
 
-package com.oimchat.server.general.kernel.work.impl.chat.store;
+package com.oimchat.server.general.kernel.work.impl.user.store;
 
 /**
  * Description <br>

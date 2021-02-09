@@ -195,7 +195,7 @@
  * 
  **/
 
-package com.oimchat.server.general.kernel.work.impl.chat.function;
+package com.oimchat.server.general.kernel.work.impl.user.function;
 
 import java.util.ArrayList;
 import java.util.HashSet;

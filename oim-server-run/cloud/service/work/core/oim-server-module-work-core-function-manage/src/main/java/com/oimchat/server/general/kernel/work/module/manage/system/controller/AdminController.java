@@ -51,6 +51,7 @@ public class AdminController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/admin/list")
 	public PageResult<List<Admin>> list(
 			@Define("body.query") AdminQuery query,
@@ -69,6 +70,7 @@ public class AdminController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/admin/add.or.update")
 	public ResultBodyMessage<User> addOrUpdate(
 			@Define("body.user") User user,
@@ -89,7 +91,6 @@ public class AdminController {
 	 * @return
 	 * @since 1.0.0
 	 */
-	@PermissionMapping(type = PermissionType.auth)
 	@ActionMapping("/v1/system/admin/get.by.id")
 	public Admin get(
 			@Define("body.id") String id) {
@@ -155,6 +156,7 @@ public class AdminController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/admin/update.password")
 	public ResultMessage updatePassword(
 			@Define("body.id") String userId,
@@ -186,6 +188,7 @@ public class AdminController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/admin/update.is.disable")
 	public ResultMessage updateIsDisable(
 			@Define("body.id") String userId,
@@ -210,6 +213,7 @@ public class AdminController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/admin/set.to.general")
 	public ResultMessage setToGeneral(
 			@Define("body.id") String userId) {

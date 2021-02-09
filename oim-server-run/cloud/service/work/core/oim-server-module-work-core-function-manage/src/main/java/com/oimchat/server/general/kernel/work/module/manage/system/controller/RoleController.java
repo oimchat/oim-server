@@ -9,6 +9,8 @@ import com.oimchat.server.general.kernel.work.module.manage.system.data.RoleQuer
 import com.oimchat.server.general.kernel.work.module.manage.system.entity.Role;
 import com.oimchat.server.general.kernel.work.module.manage.system.entity.RoleFunction;
 import com.oimchat.server.general.kernel.work.module.manage.system.service.RoleService;
+import com.onlyxiahui.aware.common.auth.annotation.PermissionMapping;
+import com.onlyxiahui.aware.common.auth.type.PermissionType;
 import com.onlyxiahui.common.annotation.parameter.Define;
 import com.onlyxiahui.common.data.common.data.Page;
 import com.onlyxiahui.common.data.common.data.PageResult;
@@ -39,6 +41,7 @@ public class RoleController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/role/list")
 	public PageResult<List<Role>> list(
 			@Define("body.query") RoleQuery query,
@@ -57,6 +60,7 @@ public class RoleController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/role/add.or.update")
 	public Role addOrUpdate(
 			@Define("body.role") Role role,
@@ -74,6 +78,7 @@ public class RoleController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/role/get.by.id")
 	public Role get(
 			@Define("body.id") String id) {
@@ -90,6 +95,7 @@ public class RoleController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/role/delete.by.id")
 	public ResultMessage deleteById(
 			@Define("body.id") String id) {
@@ -106,6 +112,7 @@ public class RoleController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/role/all.list")
 	public List<Role> allList() {
 		List<Role> list = roleService.allList();
@@ -121,6 +128,7 @@ public class RoleController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/system/role/role.function.list")
 	public List<RoleFunction> roleFunctionList(
 			@Define("body.id") String id) {
