@@ -10,7 +10,7 @@
 		<relativePath>../../cloud/common/oim-server-base-parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>oim-server-single-combine</artifactId>
+	<artifactId>oim-server-single-essential-combine</artifactId>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>

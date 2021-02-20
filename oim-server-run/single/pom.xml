@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.oimchat.server</groupId>
-	<artifactId>oim-server-single-running-build</artifactId>
+	<artifactId>oim-server-single-essential-running-build</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
@@ -60,9 +60,9 @@
 		<module>../cloud/service/work/portal/oim-server-module-work-portal-function-business</module>
 		<module>../cloud/service/work/portal/oim-server-module-work-portal-function-manage</module>
 
-		<module>oim-server-single-combine</module>
-		<module>oim-server-single-initiate</module>
-		<module>oim-server-single-running</module>
+		<module>oim-server-single-essential-combine</module>
+		<module>oim-server-single-essential-initiate</module>
+		<module>oim-server-single-essential-running</module>
 	</modules>
 
 	<dependencyManagement>

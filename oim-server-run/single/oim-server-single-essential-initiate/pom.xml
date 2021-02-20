@@ -11,7 +11,7 @@
 		<relativePath>../../cloud/common/oim-server-base-parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>oim-server-single-initiate</artifactId>
+	<artifactId>oim-server-single-essential-initiate</artifactId>
 	<name>${project.artifactId}</name>
 	<url></url>
 	<description></description>
@@ -36,7 +36,7 @@
 
 		<dependency>
 			<groupId>com.oimchat.server</groupId>
-			<artifactId>oim-server-single-combine</artifactId>
+			<artifactId>oim-server-single-essential-combine</artifactId>
 			<version>${oim.version}</version>
 		</dependency>
 
