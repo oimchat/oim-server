@@ -123,31 +123,6 @@
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
 
-			<!-- javadoc插件 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<source>${java.version}</source>
-					<charset>UTF-8</charset>
-					<encoding>UTF-8</encoding>
-					<docencoding>UTF-8</docencoding>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<!-- 关掉JDK1.8的变态检查 -->
-						<!-- -->
-						<configuration>
-							<doclint>none</doclint>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- install插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
