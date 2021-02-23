@@ -22,7 +22,7 @@ import com.onlyxiahui.aware.common.auth.type.PermissionType;
  * @since
  */
 @RestController
-@ActionMapping("")
+@ActionMapping("/manage")
 public class PersonalController {
 
 	@Resource

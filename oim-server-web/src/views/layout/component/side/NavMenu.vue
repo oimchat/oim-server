@@ -1,19 +1,17 @@
 <template>
     <el-scrollbar wrap-class="scrollbar-wrapper">
         <el-menu
-                :default-active="data.activeMenu"
-                :collapse="data.collapse"
-                :unique-opened="false"
-                :collapse-transition="false"
-                :background-color="data.backgroundColor"
-                :text-color="data.textColor"
-                :active-text-color="data.activeTextColor"
-                mode="vertical"
+            :default-active="data.activeMenu"
+            :collapse="data.collapse"
+            :unique-opened="false"
+            :collapse-transition="false"
+            :background-color="data.backgroundColor"
+            :text-color="data.textColor"
+            :active-text-color="data.activeTextColor"
+            mode="vertical"
         >
-            <template v-for="item in data.items">
-                <nav-menu-item
-                        :key="item.key"
-                        :data="item"/>
+            <template v-for="(item,index) in data.items">
+                <NavMenuRoot :data="item" :index="index+''"/>
             </template>
         </el-menu>
     </el-scrollbar>
@@ -21,14 +19,15 @@
 
 <script lang="ts">
     import {Component, Emit, Inject, Model, Prop, Provide, Vue, Watch} from 'vue-property-decorator';
-    import NavMenuItem from '@/views/layout/component/side/NavMenuItem.vue';
-    import NavMenuData from '@/views/layout/component/side/NavMenuData';
+    import NavMenuRoot from './NavMenuRoot.vue';
+    import NavMenuData from './NavMenuData';
 
     @Component({
         components: {
-            NavMenuItem,
+            NavMenuRoot,
         },
     })
+
     export default class NavMenu extends Vue {
         @Prop({
             type: NavMenuData,

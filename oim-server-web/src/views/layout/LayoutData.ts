@@ -64,7 +64,7 @@ class LayoutData {
         this.sideData.navMenu.activeMenu = key;
         const data = this.menuMap.get(key);
         if (data) {
-            this.tagViewData.addOrSelectTag(key, data.title);
+            this.tagViewData.addOrSelectTag(key, data.text);
         }
         const tabKey = this.menuTabKeyMap.get(key);
         if (tabKey) {
@@ -102,9 +102,9 @@ class LayoutData {
     private setNavMenuItemDataClickEvent(data: NavMenuItemData) {
         if (data) {
             this.menuMap.set(data.key, data);
-            const hasNodes = (data.nodes && data.nodes.length > 0);
+            const hasNodes = (data.children && data.children.length > 0);
             if (hasNodes) {
-                for (const item of data.nodes) {
+                for (const item of data.children) {
                     this.setNavMenuItemDataClickEvent(item);
                 }
             } else {
@@ -117,12 +117,12 @@ class LayoutData {
         if (data) {
             const has = this.menuMap.has(data.key);
             if (!has) {
-                let title = data.title;
+                let title = data.text;
                 title = (superTitle) ? (superTitle + ' > ' + title) : title;
 
-                const hasNodes = (data.nodes && data.nodes.length > 0);
+                const hasNodes = (data.children && data.children.length > 0);
                 if (hasNodes) {
-                    for (const item of data.nodes) {
+                    for (const item of data.children) {
                         this.setSearchData(item, title);
                     }
                 } else {
@@ -138,9 +138,9 @@ class LayoutData {
     private setMenuTabKey(tabKey: string, data: NavMenuItemData) {
         if (data) {
             this.menuTabKeyMap.set(data.key, tabKey);
-            const hasNodes = (data.nodes && data.nodes.length > 0);
+            const hasNodes = (data.children && data.children.length > 0);
             if (hasNodes) {
-                for (const item of data.nodes) {
+                for (const item of data.children) {
                     this.setMenuTabKey(tabKey, item);
                 }
             }

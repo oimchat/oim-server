@@ -1,7 +1,7 @@
 import Path from '@/app/com/common/permission/Path';
 
 class UserPath {
-    public service: string = 'work-user';
+    public service: string = 'manage';
     public list: Path = new Path(this.service, '/v1/user/info/list');
     public addOrUpdate: Path = new Path(this.service, '/v1/user/info/add.or.update');
     public getById: Path = new Path(this.service, '/v1/user/info/get.by.id');

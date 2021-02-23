@@ -59,7 +59,7 @@
     import {Component, Emit, Inject, Model, Prop, Provide, Vue, Watch} from 'vue-property-decorator';
     import SvgIcon from '@/views/component/svgicon/SvgIcon.vue';
 
-    import indexClient from '@/app/com/main/module/work/index/IndexClient';
+    import EnterClient from '@/app/com/main/module/work/enter/EnterClient';
     import RouterUtil from '@/views/util/RouterUtil';
     import Auth from '@/app/com/common/auth/Auth';
 
@@ -138,7 +138,7 @@
             (this.$refs as any).loginForm.validate((valid: boolean) => {
                 if (valid) {
                     own.loading = true;
-                    indexClient.login(loginData.username, loginData.password, (result) => {
+                    EnterClient.login(loginData.username, loginData.password, (result) => {
                         const info = result.info;
                         const body = result.body;
                         if (info && info.success && body) {

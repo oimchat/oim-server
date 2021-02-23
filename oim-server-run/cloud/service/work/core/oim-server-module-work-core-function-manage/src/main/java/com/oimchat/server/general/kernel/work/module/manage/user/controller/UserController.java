@@ -12,6 +12,8 @@ import com.oimchat.server.general.kernel.work.module.base.user.data.query.UserQu
 import com.oimchat.server.general.kernel.work.module.base.user.entity.User;
 import com.oimchat.server.general.kernel.work.module.base.user.type.UserTypeEnum;
 import com.oimchat.server.general.kernel.work.module.manage.user.service.UserService;
+import com.onlyxiahui.aware.common.auth.annotation.PermissionMapping;
+import com.onlyxiahui.aware.common.auth.type.PermissionType;
 import com.onlyxiahui.common.annotation.parameter.Define;
 import com.onlyxiahui.common.data.common.bean.ExistInfo;
 import com.onlyxiahui.common.data.common.data.Page;
@@ -29,7 +31,7 @@ import com.onlyxiahui.framework.action.dispatcher.annotation.ActionMapping;
  * @since
  */
 @Controller
-@ActionMapping("")
+@ActionMapping("/manage")
 public class UserController {
 	@Resource
 	UserService userService;
@@ -43,6 +45,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/user/info/list")
 	public PageResult<List<UserData>> list(
 			@Define("body.query") UserQuery query,
@@ -60,6 +63,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/user/info/add.or.update")
 	public ResultBodyMessage<User> addOrUpdate(
 			@Define("body") User user) {
@@ -79,6 +83,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.auth)
 	@ActionMapping("/v1/user/info/get.by.id")
 	public UserData getById(
 			@Define("body.id") String id) {
@@ -98,6 +103,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.auth)
 	@ActionMapping("/v1/user/info/is.exist")
 	public ExistInfo isExist(
 			@Define("body.id") String id,
@@ -127,6 +133,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/user/info/load.by.id")
 	public UserData loadById(
 			@Define("body.id") String id) {
@@ -144,6 +151,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/user/info/update.password")
 	public ResultMessage updatePassword(
 			@Define("body.id") String userId,
@@ -175,6 +183,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/user/info/update.is.disable")
 	public ResultMessage updateIsDisable(
 			@Define("body.id") String userId,
@@ -199,6 +208,7 @@ public class UserController {
 	 * @return
 	 * @since 1.0.0
 	 */
+	@PermissionMapping(type = PermissionType.grant)
 	@ActionMapping("/v1/user/info/set.to.admin")
 	public ResultMessage setToAdmin(
 			@Define("body.id") String userId) {

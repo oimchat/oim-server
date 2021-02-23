@@ -1,7 +1,7 @@
 import Path from '@/app/com/common/permission/Path';
 
 class RolePath {
-    public service: string = 'work-user';
+    public service: string = 'manage';
     public list: Path = new Path(this.service, '/v1/system/role/list');
     public addOrUpdate: Path = new Path(this.service, '/v1/system/role/add.or.update');
     public getById: Path = new Path(this.service, '/v1/system/role/get.by.id');

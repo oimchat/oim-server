@@ -4,7 +4,7 @@ import Path from '@/app/com/common/permission/Path';
 
 class RouteMenuUtil {
 
-    public static convertMenus(routes: []): NavMenuItemData[] {
+    public static convertMenus(routes: any[]): NavMenuItemData[] {
         const menus: NavMenuItemData[] = [];
         if (routes && routes.length > 0) {
             for (const r of routes) {
@@ -33,14 +33,14 @@ class RouteMenuUtil {
             icon = meta.icon;
             const url: Path = meta.url;
             if (url) {
-                hasAuth = url.has();
+                // hasAuth = url.has();
             }
         }
 
         if (hasAuth) {
             const path: string = route.path;
             const item = new NavMenuItemData();
-            item.title = title;
+            item.text = title;
             item.icon = icon;
             item.key = (path.startsWith('/')) ? path : superKey + '/' + path;
 
@@ -49,10 +49,10 @@ class RouteMenuUtil {
                 for (const c of children) {
                     const node = RouteMenuUtil.convertMenu(item.key, c);
                     if (node) {
-                        item.nodes.push(node);
+                        item.children.push(node);
                     }
                 }
-                if (item.nodes.length > 0) {
+                if (item.children.length > 0) {
                     data = item;
                 }
             } else {

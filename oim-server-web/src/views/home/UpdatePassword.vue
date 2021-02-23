@@ -19,65 +19,73 @@
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Inject, Model, Prop, Provide, Vue, Watch} from 'vue-property-decorator';
+import {Component, Emit, Inject, Model, Prop, Provide, Vue, Watch} from 'vue-property-decorator';
+import PersonalClient from '@/app/com/main/module/work/personal/PersonalClient';
 
-    @Component({
-        components: {},
-    })
-    export default class UpdatePassword extends Vue {
-        private data = {
-            oldPassword: '',
-            newPassword: '',
-            repeatPassword: '',
-        };
+@Component({
+    components: {},
+})
+export default class UpdatePassword extends Vue {
+    private data = {
+        oldPassword: '',
+        newPassword: '',
+        repeatPassword: '',
+    };
 
-        private passwordValidate = {
-            oldPassword: [
-                {required: true, message: '请输入原密码', trigger: 'blur'},
-            ],
-            newPassword: [
-                {required: true, message: '请输入新密码', trigger: 'blur'},
-                {min: 6, message: '请至少输入6个字符', trigger: 'blur'},
-                {max: 32, message: '最多输入32个字符', trigger: 'blur'},
-            ],
-            repeatPassword: [
-                {required: true, message: '请再次输入新密码', trigger: 'blur'},
-                {validator: this.validRepeatPassword, trigger: 'blur'},
-            ],
-        };
-        private saveLoading: boolean = false;
+    private passwordValidate = {
+        oldPassword: [
+            {required: true, message: '请输入原密码', trigger: 'blur'},
+        ],
+        newPassword: [
+            {required: true, message: '请输入新密码', trigger: 'blur'},
+            {min: 6, message: '请至少输入6个字符', trigger: 'blur'},
+            {max: 32, message: '最多输入32个字符', trigger: 'blur'},
+        ],
+        repeatPassword: [
+            {required: true, message: '请再次输入新密码', trigger: 'blur'},
+            {validator: this.validRepeatPassword, trigger: 'blur'},
+        ],
+    };
+    private saveLoading: boolean = false;
 
-        public cancel() {
-            this.onDone();
-        }
+    public cancel() {
+        this.onDone();
+    }
 
-        public save(): void {
-            const own = this;
-            const data = this.data;
-            (this.$refs as any).form.validate((valid: boolean) => {
-                if (valid) {
-                    own.onDone();
-                }
-            });
-        }
-
-        @Emit('on-done')
-        public onDone() {
-            // no
-        }
-
-        private validRepeatPassword(rule: any, value: any, callback: any) {
-            if (value !== this.data.newPassword) {
-                callback(new Error('两次输入密码不一致'));
-            } else {
-                callback();
+    public save(): void {
+        const own = this;
+        const data = this.data;
+        (this.$refs as any).form.validate((valid: boolean) => {
+            if (valid) {
+                own.saveLoading = true;
+                PersonalClient.updatePassword(data.newPassword, data.oldPassword, (result) => {
+                    const info = result.info;
+                    if (info && info.success) {
+                        own.onDone();
+                    }
+                    own.saveLoading = false;
+                });
             }
+        });
+    }
+
+    @Emit('on-done')
+    public onDone() {
+        // no
+    }
+
+    private validRepeatPassword(rule: any, value: any, callback: any) {
+        if (value !== this.data.newPassword) {
+            callback(new Error('两次输入密码不一致'));
+        } else {
+            callback();
         }
     }
+}
 </script>
 
 <style scoped>
-    .dialog-footer {
-        text-align: right;
-    }
+.dialog-footer {
+    text-align: right;
+}
 </style>

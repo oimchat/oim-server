@@ -1,12 +1,12 @@
 export default class NavMenuItemData {
 
 
-    public title: string = '';
+    public text: string = '';
     public icon: string = '';
     public hidden: boolean = false;
     // public path: string = '';
     public key: string = '';
-    public nodes: NavMenuItemData[] = [];
+    public children: NavMenuItemData[] = [];
     private clicks: any[] = [];
     public click: (e: any) => void = (e) => {
         this.doClick(e);

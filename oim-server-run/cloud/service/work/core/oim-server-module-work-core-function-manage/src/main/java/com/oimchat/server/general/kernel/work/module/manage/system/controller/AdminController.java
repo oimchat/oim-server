@@ -33,7 +33,7 @@ import com.onlyxiahui.aware.common.auth.type.PermissionType;
  * @since
  */
 @Controller
-@ActionMapping("")
+@ActionMapping("/manage")
 public class AdminController {
 
 	@Resource

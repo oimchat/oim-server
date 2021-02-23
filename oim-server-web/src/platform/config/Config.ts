@@ -1,7 +1,7 @@
 class Config {
 
-    private dev: string = 'http://127.0.0.1:10000/manage';
-    private test: string = 'http://127.0.0.1:10000/manage';
+    private dev: string = 'http://127.0.0.1:10000';
+    private test: string = 'http://127.0.0.1:10000';
     private pro: string = '/manage';
 
     public getBaseUrl(): string {

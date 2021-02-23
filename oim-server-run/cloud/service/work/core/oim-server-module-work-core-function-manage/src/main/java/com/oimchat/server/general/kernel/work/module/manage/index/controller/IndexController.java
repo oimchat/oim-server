@@ -26,7 +26,7 @@ import com.onlyxiahui.aware.common.auth.type.PermissionType;
  * @since
  */
 @RestController
-@ActionMapping("")
+@ActionMapping("/manage")
 public class IndexController {
 
 	@Resource
@@ -43,7 +43,7 @@ public class IndexController {
 	 * @since 1.0.0
 	 */
 	@PermissionMapping(type = PermissionType.skip)
-	@ActionMapping("/v1/index/system/login")
+	@ActionMapping("/v1/home/enter/login")
 	public ResultBodyMessage<LoginResult> login(
 			@Define("body.account") String account,
 			@Define("body.password") String password) {
@@ -61,7 +61,7 @@ public class IndexController {
 	 * @since 1.0.0
 	 */
 	@PermissionMapping(type = PermissionType.auth)
-	@ActionMapping("/v1/system/index/function.list")
+	@ActionMapping("/v1/home/enter/function.list")
 	public ListBody<List<Function>> getFunctionList(
 			UserSession userSession) {
 		String userId = userSession.getUserId();

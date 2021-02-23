@@ -38,7 +38,7 @@
         @Watch('data.collapse')
         public collapseValue(newValue: boolean) {
             const navMenu: NavMenuData = this.data.navMenu;
-            navMenu.collapse = this.data.collapse;
+           // navMenu.collapse = this.data.collapse;
         }
 
         get showLogo() {

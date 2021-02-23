@@ -25,7 +25,7 @@ import com.onlyxiahui.framework.action.dispatcher.annotation.ActionMapping;
  * @since
  */
 @RestController
-@ActionMapping("")
+@ActionMapping("/manage")
 public class RoleController {
 
 	@Autowired
