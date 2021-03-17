@@ -128,4 +128,8 @@ public class GroupRelationService {
 		}
 		return message;
 	}
+
+	public List<GroupRelation> getListByGroupIds(String userId, List<String> groupIds) {
+		return groupCategoryMemberDAO.getListByGroupIds(userId, groupIds);
+	}
 }

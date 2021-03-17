@@ -66,9 +66,9 @@ public class GroupHeadUploadController {
 				FilePart fp = parts.get(0);
 				fs.add(fp);
 
-				long length = fp.headers().getContentLength();
+				// long length = fp.headers().getContentLength();
 
-				System.out.println(length);
+				// System.out.println(length);
 			}
 			String userId = exchange.getRequest().getQueryParams().getFirst("userId");
 			String groupId = exchange.getRequest().getQueryParams().getFirst("groupId");

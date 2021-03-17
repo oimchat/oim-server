@@ -86,6 +86,15 @@ public class GroupRelationAction {
 		return data;
 	}
 
+	@ActionMapping(value = "1.1.0007")
+	public List<GroupRelation> getListByGroupIds(
+			UserSession userSession,
+			@Define("body.groupIds") List<String> groupIds) {
+		String userId = userSession.getUserId();
+		List<GroupRelation> data = groupRelationService.getListByGroupIds(userId, groupIds);
+		return data;
+	}
+
 	/**
 	 * 修改群备注<br>
 	 * Date 2019-01-20 17:37:06<br>

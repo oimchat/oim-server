@@ -86,6 +86,15 @@ public class ContactRelationAction {
 		return data;
 	}
 
+	@ActionMapping(value = "1.1.0009")
+	public List<ContactRelation> getByContactUserIds(
+			UserSession userSession,
+			@Define("body.contactUserIds") List<String> contactUserIds) {
+		String ownerUserId = userSession.getUserId();
+		List<ContactRelation> list = contactRelationService.getByContactUserIds(ownerUserId, contactUserIds);
+		return list;
+	}
+
 	/**
 	 * 修改备注<br>
 	 * Date 2019-01-20 17:37:06<br>

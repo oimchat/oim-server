@@ -58,6 +58,22 @@ public class GroupRelationDAO extends BaseDAO {
 		return gcm;
 	}
 
+	public List<GroupRelation> getListByGroupIds(String userId, List<String> groupIds) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select cr from ");
+		hql.append(GroupRelation.class.getName());
+		hql.append(" cr where cr.userId=:userId ");
+		if (null != groupIds && !groupIds.isEmpty()) {
+			hql.append(" and cr.groupId in( :groupIds )");
+		}
+
+		QueryWrapper queryWrapper = new QueryWrapper();
+		queryWrapper.put("userId", userId);
+		queryWrapper.put("groupIds", groupIds);
+		List<GroupRelation> list = this.queryListByHql(hql.toString(), queryWrapper, GroupRelation.class);
+		return list;
+	}
+
 	/**
 	 * 
 	 * Date 2019-01-20 21:13:44<br>

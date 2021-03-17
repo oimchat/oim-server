@@ -77,6 +77,22 @@ public class ContactRelationDAO extends BaseEntityDAO<ContactRelation> {
 		return list;
 	}
 
+	public List<ContactRelation> getListByContactUserIds(String ownerUserId, List<String> contactUserIds) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select cr from ");
+		hql.append(ContactRelation.class.getName());
+		hql.append(" cr where cr.ownerUserId=:ownerUserId ");
+		if (null != contactUserIds && !contactUserIds.isEmpty()) {
+			hql.append(" and cr.contactUserId in( :contactUserIds )");
+		}
+
+		QueryWrapper queryWrapper = new QueryWrapper();
+		queryWrapper.put("ownerUserId", ownerUserId);
+		queryWrapper.put("contactUserIds", contactUserIds);
+		List<ContactRelation> list = this.queryListByHql(hql.toString(), queryWrapper, ContactRelation.class);
+		return list;
+	}
+
 	/**
 	 * 
 	 * Date 2019-01-26 22:15:38<br>

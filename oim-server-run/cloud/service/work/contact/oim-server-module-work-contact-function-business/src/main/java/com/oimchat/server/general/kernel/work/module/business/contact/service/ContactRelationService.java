@@ -191,4 +191,9 @@ public class ContactRelationService {
 	public ContactRelation getById(String ownerUserId, String relationId) {
 		return contactRelationDAO.get(ContactRelation.class, relationId);
 	}
+
+	public List<ContactRelation> getByContactUserIds(String ownerUserId, List<String> contactUserIds) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

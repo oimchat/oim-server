@@ -53,7 +53,7 @@ public class GroupInviteAction {
 	 */
 
 	@ActionMapping(value = "1.1.0001")
-	public CountInfo getInviteApplyReceiveCount(
+	public CountInfo getInviteApplyCount(
 			UserSession userSession,
 			@Define("body.query") GroupInviteVerifyQuery query) {
 		Page page = new Page();
@@ -75,7 +75,7 @@ public class GroupInviteAction {
 	 */
 
 	@ActionMapping(value = "1.1.0002")
-	public PageResult<List<GroupInviteApply>> getInviteApplyReceiveList(
+	public PageResult<List<GroupInviteApply>> getInviteApplyList(
 			UserSession userSession,
 			@Define("body.query") GroupInviteVerifyQuery query,
 			@Define("body.page") Page page) {
@@ -95,7 +95,7 @@ public class GroupInviteAction {
 	 * @return
 	 * @since 1.0.0
 	 */
-	public PageResult<List<GroupInviteApply>> getInviteApplyDataReceiveList(
+	public PageResult<List<GroupInviteApply>> getInviteApplyDataList(
 			UserSession userSession,
 			@Define("body.query") GroupInviteVerifyQuery query,
 			@Define("body.page") Page page) {
