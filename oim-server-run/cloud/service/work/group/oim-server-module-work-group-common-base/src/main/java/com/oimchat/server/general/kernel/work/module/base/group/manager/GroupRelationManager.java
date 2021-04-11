@@ -55,4 +55,9 @@ public class GroupRelationManager {
 		GroupRelation bean = groupRelationDAO.getByGroupId(userId, groupId);
 		return bean != null;
 	}
+
+	public GroupRelation getByGroupId(String userId, String groupId) {
+		GroupRelation bean = groupRelationDAO.getByGroupId(userId, groupId);
+		return bean;
+	}
 }

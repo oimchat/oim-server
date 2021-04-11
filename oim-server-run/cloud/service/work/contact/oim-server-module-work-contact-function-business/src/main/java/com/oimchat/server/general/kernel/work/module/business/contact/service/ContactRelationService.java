@@ -111,8 +111,7 @@ public class ContactRelationService {
 		try {
 
 			if (StringUtil.isNotBlank(contactUserId)) {
-				
-				
+
 				int count = contactRelationDAO.updateRemark(ownerUserId, contactUserId, remark);
 				if (count <= 0) {
 					message.addWarning(ErrorCode.business.code(".0001"), "修改失败！");
@@ -193,7 +192,6 @@ public class ContactRelationService {
 	}
 
 	public List<ContactRelation> getByContactUserIds(String ownerUserId, List<String> contactUserIds) {
-		// TODO Auto-generated method stub
-		return null;
+		return contactRelationDAO.getListByContactUserIds(ownerUserId, contactUserIds);
 	}
 }

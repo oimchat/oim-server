@@ -23,9 +23,9 @@ import com.onlyxiahui.wofa.server.net.push.starter.EnableDataPush;
 @EnableDataPush
 @SpringBootApplication(exclude = {
 		DruidDataSourceAutoConfigure.class })
-public class WorkCoreApplication {
+public class WorkContactApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WorkCoreApplication.class, args);
+		SpringApplication.run(WorkContactApplication.class, args);
 	}
 }

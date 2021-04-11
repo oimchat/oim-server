@@ -65,7 +65,7 @@ public class ContactCategory extends PrimaryStringEntity {
 		this.userId = userId;
 	}
 
-	public int getSort() {
+	public Integer getSort() {
 		return sort;
 	}
 
@@ -73,7 +73,7 @@ public class ContactCategory extends PrimaryStringEntity {
 		this.sort = sort;
 	}
 
-	public int getType() {
+	public Integer getType() {
 		return type;
 	}
 

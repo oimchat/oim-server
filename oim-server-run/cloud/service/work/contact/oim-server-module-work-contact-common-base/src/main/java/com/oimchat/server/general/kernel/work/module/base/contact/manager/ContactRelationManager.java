@@ -1,5 +1,8 @@
 package com.oimchat.server.general.kernel.work.module.base.contact.manager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -37,21 +40,23 @@ public class ContactRelationManager {
 	 * @return boolean
 	 * @since 1.0.0
 	 */
-	public boolean bothContact(
+	public List<ContactRelation> bothContact(
 			String applyUserId,
 			String applyCategoryId,
 			String applyRemark,
 			String targetUserId,
 			String targetCategoryId,
 			String targetRemark) {
-		boolean mark = true;
+		List<ContactRelation> list = new ArrayList<>();
 		if (!hasContact(applyUserId, targetUserId)) {
-			add(applyUserId, targetUserId, applyCategoryId, applyRemark);
+			ContactRelation data = add(applyUserId, targetUserId, applyCategoryId, applyRemark);
+			list.add(data);
 		}
 		if (!hasContact(targetUserId, applyUserId)) {
-			add(targetUserId, applyUserId, targetCategoryId, targetRemark);
+			ContactRelation data = add(targetUserId, applyUserId, targetCategoryId, targetRemark);
+			list.add(data);
 		}
-		return mark;
+		return list;
 	}
 
 	/**

@@ -235,21 +235,11 @@ public class ContactAddService {
 		boolean mark = true;
 
 		key = KeyUtil.getKey();
-		contactRelationManager.bothContact(applyUserId, requestCategoryId, requestRemark, targetUserId, addCategoryId, addRemark);
+		List<ContactRelation> list = contactRelationManager.bothContact(applyUserId, requestCategoryId, requestRemark, targetUserId, addCategoryId, addRemark);
 		// 推送添加成功消
-		ContactRelation applyMember = new ContactRelation();
-		applyMember.setOwnerUserId(applyUserId);
-		applyMember.setContactUserId(targetUserId);
-		applyMember.setRemark(requestRemark);
-		applyMember.setCategoryId(requestCategoryId);
-		contactRelationPush.pushAdd(applyUserId, key, targetUserId);
-
-		ContactRelation addMember = new ContactRelation();
-		addMember.setOwnerUserId(targetUserId);
-		addMember.setContactUserId(applyUserId);
-		addMember.setRemark(addRemark);
-		addMember.setCategoryId(addCategoryId);
-		contactRelationPush.pushAdd(targetUserId, key, applyUserId);
+		for (ContactRelation data : list) {
+			contactRelationPush.pushAdd(data.getOwnerUserId(), key, data.getContactUserId());
+		}
 		return mark;
 	}
 

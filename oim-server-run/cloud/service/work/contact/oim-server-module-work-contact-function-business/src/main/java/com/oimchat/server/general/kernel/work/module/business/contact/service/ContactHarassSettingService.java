@@ -106,7 +106,7 @@ public class ContactHarassSettingService {
 			contactHarassSettingDAO.save(data);
 		} else {
 			data.setId(id);
-			contactHarassSettingDAO.update(data);
+			contactHarassSettingDAO.updateSelective(data);
 		}
 	}
 

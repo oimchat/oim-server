@@ -80,6 +80,7 @@ public class GroupRelationAction {
 	@ActionMapping(value = "1.1.0004")
 	public GroupRelation get(
 			UserSession userSession,
+			@Define("body.id") String id,
 			@Define("body.groupId") String groupId) {
 		String ownerUserId = userSession.getUserId();
 		GroupRelation data = groupRelationService.getByGroupId(ownerUserId, groupId);

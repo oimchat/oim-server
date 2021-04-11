@@ -24,6 +24,7 @@ import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupJoin
 import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupJoinSetting;
 import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupJoinVerifyAnswer;
 import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupMember;
+import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupRelation;
 import com.oimchat.server.general.kernel.work.module.base.group.manager.GroupCategoryManager;
 import com.oimchat.server.general.kernel.work.module.base.group.manager.GroupJoinSettingManager;
 import com.oimchat.server.general.kernel.work.module.base.group.manager.GroupMemberManager;
@@ -122,9 +123,9 @@ public class GroupJoinService {
 			handleType = GroupJoinApply.handle_type_accept;
 
 			GroupJoinApply join = addGroupJoinRequest(handleType, request, answerList, setting);
-
-			if (!groupRelationManager.has(applyUserId, groupId)) {
-				groupRelationManager.add(
+			GroupRelation gr = groupRelationManager.getByGroupId(applyUserId, groupId);
+			if (null == gr) {
+				gr = groupRelationManager.add(
 						groupId,
 						applyUserId,
 						categoryId,
@@ -155,9 +156,9 @@ public class GroupJoinService {
 			String categoryId = requestCategoryId != null && !"".equals(requestCategoryId) ? requestCategoryId : groupCategoryManager.getOrCreateDefaultCategoryId(applyUserId);
 
 			GroupJoinApply join = addGroupJoinRequest(handleType, request, answerList, setting);
-
-			if (!groupRelationManager.has(applyUserId, groupId)) {
-				groupRelationManager.add(
+			GroupRelation gr = groupRelationManager.getByGroupId(applyUserId, groupId);
+			if (null == gr) {
+				gr = groupRelationManager.add(
 						groupId,
 						applyUserId,
 						categoryId,
@@ -297,8 +298,9 @@ public class GroupJoinService {
 
 						if (GroupJoinApply.handle_type_accept.equals(handleType)) {
 
-							if (!groupRelationManager.has(applyUserId, groupId)) {
-								groupRelationManager.add(
+							GroupRelation gr = groupRelationManager.getByGroupId(applyUserId, groupId);
+							if (null == gr) {
+								gr = groupRelationManager.add(
 										groupId,
 										applyUserId,
 										categoryId,

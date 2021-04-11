@@ -17,6 +17,7 @@ import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupInvi
 import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupJoinApply;
 import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupJoinSetting;
 import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupMember;
+import com.oimchat.server.general.kernel.work.module.base.group.entity.GroupRelation;
 import com.oimchat.server.general.kernel.work.module.base.group.manager.GroupCategoryManager;
 import com.oimchat.server.general.kernel.work.module.base.group.manager.GroupJoinSettingManager;
 import com.oimchat.server.general.kernel.work.module.base.group.manager.GroupManager;
@@ -370,8 +371,10 @@ public class GroupInviteService {
 				String remark = "";
 
 				if (GroupJoinApply.handle_type_accept.equals(inviteeHandleType)) {
-					if (!groupRelationManager.has(inviteeUserId, groupId)) {
-						groupRelationManager.add(groupId, inviteeUserId, categoryId, remark);
+
+					GroupRelation gr = groupRelationManager.getByGroupId(inviteeUserId, groupId);
+					if (null == gr) {
+						gr = groupRelationManager.add(groupId, inviteeUserId, categoryId, remark);
 					}
 					if (!groupMemberManager.inGroup(groupId, inviteeUserId)) {
 						groupMemberManager.add(groupId, inviteeUserId);

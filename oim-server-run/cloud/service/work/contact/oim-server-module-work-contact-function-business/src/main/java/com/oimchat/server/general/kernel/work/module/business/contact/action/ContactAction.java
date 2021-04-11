@@ -29,6 +29,7 @@ import com.onlyxiahui.common.data.common.data.Page;
 import com.onlyxiahui.common.data.common.data.PageResult;
 import com.onlyxiahui.common.message.result.ResultBodyMessage;
 import com.onlyxiahui.common.message.result.ResultMessage;
+import com.onlyxiahui.common.utils.base.lang.string.StringUtil;
 import com.onlyxiahui.framework.action.dispatcher.annotation.ActionMapping;
 
 /**
@@ -140,9 +141,14 @@ public class ContactAction {
 	 */
 	@ActionMapping(value = "1.1.0007")
 	public ResultMessage sendAddApply(
+			UserSession userSession,
 			HeadImpl head,
 			@Define("body.apply") ContactAddApplyData apply,
 			@Define("body.answers") List<VerifyAnswer> answers) {
+
+		if (StringUtil.isBlank(apply.getApplyUserId())) {
+			apply.setApplyUserId(userSession.getUserId());
+		}
 		ResultMessage message = contactAddService.userAddApply(head.getKey(), apply, answers);
 		return message;
 	}
