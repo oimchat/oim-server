@@ -197,7 +197,7 @@
 
 package com.oimchat.core.net.back;
 
-import com.onlyxiahui.framework.net.handler.data.action.AbstractDataBackAction;
+import com.onlyxiahui.framework.net.handler.data.action.DataBackActionAdapter;
 
 /**
  * Description <br>
@@ -207,6 +207,6 @@ import com.onlyxiahui.framework.net.handler.data.action.AbstractDataBackAction;
  * @since 1.0.0
  */
 
-public abstract class AbstractParallelDataBackAction extends AbstractDataBackAction {
+public abstract class AbstractParallelDataBackAction extends DataBackActionAdapter {
 
 }

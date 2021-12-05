@@ -11,7 +11,7 @@ import com.oimchat.server.basic.common.util.FileNameUtil;
 import com.oimchat.server.basic.common.util.KeyUtil;
 import com.oimchat.server.general.kernel.support.file.common.handler.data.FileInfo;
 import com.oimchat.server.general.kernel.support.file.common.util.FilePathUtil;
-import com.onlyxiahui.common.utils.base.io.FileUtil;
+import com.onlyxiahui.common.utils.base.io.file.FileUtil;
 
 /**
  * Description <br>
